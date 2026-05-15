@@ -23,6 +23,25 @@ const Header = () => {
     { name: 'Investors', href: '#investors' },
   ];
 
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <header 
       className={`header-fixed ${isScrolled ? 'header-scrolled' : 'py-6 bg-transparent'}`}
@@ -36,6 +55,7 @@ const Header = () => {
             <a 
               key={link.name} 
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               style={{ 
                 fontWeight: '500', 
                 color: 'var(--text-main)',
@@ -87,7 +107,7 @@ const Header = () => {
                 <a 
                   key={link.name} 
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   style={{ 
                     fontWeight: '600', 
                     color: 'var(--text-main)',
