@@ -5,51 +5,45 @@ import { motion } from 'framer-motion';
 const Features = () => {
   const features = [
     {
-      icon: <MessageSquare size={28} />,
+      icon: <MessageSquare size={32} />,
       title: "Real-time Chat",
-      desc: "Direct, instant communication between workers and farmers with built-in translation. Connect without barriers.",
-      size: "large",
+      desc: "Direct communication with built-in translation between farmers and workers.",
       color: "#3B82F6"
     },
     {
-      icon: <Lock size={28} />,
+      icon: <Lock size={32} />,
       title: "Secure Payments",
-      desc: "Instant digital escrow payments once the job is verified. Safe and transparent.",
-      size: "small",
+      desc: "Instant digital escrow payments verified by our smart security system.",
       color: "#10B981"
     },
     {
-      icon: <Globe size={28} />,
-      title: "Multilingual",
-      desc: "Available in 12+ local dialects. Your language, your app.",
-      size: "small",
+      icon: <Globe size={32} />,
+      title: "Local Language",
+      desc: "Use Dinasari in your preferred dialect. Supporting 12+ regional languages.",
       color: "#F59E0B"
     },
     {
-      icon: <CloudRain size={28} />,
-      title: "Weather Advisory",
-      desc: "Localized hyper-accurate weather alerts for your specific village coordinates.",
-      size: "small",
+      icon: <CloudRain size={32} />,
+      title: "Weather Alerts",
+      desc: "Hyper-accurate, localized weather reports sent directly to your phone.",
       color: "#6366F1"
     },
     {
-      icon: <Shield size={28} />,
-      title: "Verified",
-      desc: "Aadhaar-verified profiles for total safety and reliability across the platform.",
-      size: "small",
+      icon: <Shield size={32} />,
+      title: "KYC Verified",
+      desc: "Aadhaar-linked worker profiles for maximum safety and institutional trust.",
       color: "#EF4444"
     },
     {
-      icon: <Zap size={28} />,
-      title: "Offline Sync",
-      desc: "Works even with patchy internet. Sync your data once you're back online. Never lose progress in low-signal areas.",
-      size: "large",
+      icon: <Zap size={32} />,
+      title: "Offline Mode",
+      desc: "Register and log tasks without internet. Auto-syncs when signal returns.",
       color: "#8B5CF6"
     }
   ];
 
   return (
-    <section id="features" style={{ background: '#fcfdfc', padding: '140px 0', overflow: 'hidden' }}>
+    <section id="features" style={{ background: '#ffffff', padding: '140px 0' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '100px' }}>
           <motion.div 
@@ -58,52 +52,48 @@ const Features = () => {
             viewport={{ once: true }}
             style={{ 
               display: 'inline-block', 
-              padding: '8px 20px', 
-              background: 'rgba(31, 138, 61, 0.08)', 
+              padding: '8px 24px', 
+              background: 'var(--primary)', 
               borderRadius: '50px',
-              color: 'var(--primary)',
+              color: 'white',
               fontWeight: '700',
-              fontSize: '14px',
+              fontSize: '13px',
               marginBottom: '24px',
               textTransform: 'uppercase',
-              letterSpacing: '1px'
+              letterSpacing: '1.5px'
             }}
           >
-            Powerful Ecosystem
+            Core Capabilities
           </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            style={{ fontSize: '64px', fontWeight: '900', color: 'var(--text-main)', letterSpacing: '-3px', lineHeight: '1' }}
+            style={{ fontSize: '56px', fontWeight: '900', color: 'var(--text-main)', letterSpacing: '-2px', lineHeight: '1.1' }}
           >
-            Built for the <span className="text-gradient">Next Billion.</span>
+            Digital Tools for the <br /> <span className="text-gradient">Modern Rural Workforce.</span>
           </motion.h2>
         </div>
 
-        <div className="bento-grid">
+        <div className="features-grid">
           {features.map((f, idx) => (
             <motion.div 
               key={idx} 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className={`feature-card ${f.size}`}
+              className="modern-feature-card"
             >
-              <div className="feature-content">
-                <div className="icon-wrapper" style={{ '--icon-color': f.color }}>
+              <div className="card-inner">
+                <div className="icon-box" style={{ '--accent': f.color }}>
                   {f.icon}
                 </div>
-                <div>
-                  <h4 style={{ fontSize: '24px', fontWeight: '800', marginBottom: '16px', color: 'var(--text-main)' }}>{f.title}</h4>
-                  <p style={{ fontSize: '17px', color: 'var(--text-muted)', lineHeight: '1.6' }}>{f.desc}</p>
-                </div>
-                <div className="card-footer">
-                  <span style={{ fontSize: '14px', fontWeight: '700', color: f.color }}>Learn More</span>
-                  <ChevronRight size={16} color={f.color} />
-                </div>
+                <h4 style={{ fontSize: '22px', fontWeight: '800', marginBottom: '16px' }}>{f.title}</h4>
+                <p style={{ fontSize: '16px', color: 'var(--text-muted)', lineHeight: '1.7' }}>{f.desc}</p>
+                
+                <div className="accent-line" style={{ background: f.color }} />
               </div>
             </motion.div>
           ))}
@@ -111,77 +101,63 @@ const Features = () => {
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        .bento-grid {
+        .features-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          grid-auto-rows: minmax(320px, auto);
-          gap: 30px;
+          gap: 40px;
         }
-        .feature-card {
-          background: white;
-          border-radius: 40px;
-          border: 1px solid rgba(0,0,0,0.06);
-          padding: 48px;
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          cursor: pointer;
+        .modern-feature-card {
           position: relative;
-          overflow: hidden;
+          background: #fff;
+          border-radius: 32px;
+          padding: 50px 40px;
+          border: 1px solid rgba(0,0,0,0.05);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .feature-card.large {
-          grid-column: span 2;
+        .modern-feature-card:hover {
+          transform: translateY(-12px);
+          box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+          border-color: rgba(31, 138, 61, 0.1);
         }
-        .feature-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 30px 60px rgba(0,0,0,0.06);
-          border-color: rgba(31, 138, 61, 0.2);
-        }
-        .feature-content {
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-        .icon-wrapper {
-          width: 64px;
-          height: 64px;
-          background: var(--icon-color);
-          background: color-mix(in srgb, var(--icon-color), transparent 90%);
+        .icon-box {
+          width: 70px;
+          height: 70px;
+          background: color-mix(in srgb, var(--accent), transparent 90%);
+          color: var(--accent);
           border-radius: 20px;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--icon-color);
           margin-bottom: 32px;
-        }
-        .card-footer {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          margin-top: 32px;
-          opacity: 0;
-          transform: translateX(-10px);
           transition: all 0.3s ease;
         }
-        .feature-card:hover .card-footer {
+        .modern-feature-card:hover .icon-box {
+          background: var(--accent);
+          color: white;
+          transform: rotate(10deg);
+        }
+        .accent-line {
+          position: absolute;
+          bottom: 0;
+          left: 40px;
+          right: 40px;
+          height: 3px;
+          border-radius: 3px 3px 0 0;
+          opacity: 0;
+          transform: scaleX(0.5);
+          transition: all 0.4s ease;
+        }
+        .modern-feature-card:hover .accent-line {
           opacity: 1;
-          transform: translateX(0);
+          transform: scaleX(1);
         }
         @media (max-width: 1200px) {
-          #features h2 { font-size: 48px; }
+          .features-grid { grid-template-columns: repeat(2, 1fr); }
         }
-        @media (max-width: 992px) {
-          .bento-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .feature-card.large {
-            grid-column: span 1 !important;
-          }
-          .feature-card {
-            padding: 32px;
-          }
-          #features {
-            padding: 80px 0 !important;
-          }
+        @media (max-width: 768px) {
+          .features-grid { grid-template-columns: 1fr; gap: 30px; }
+          #features h2 { font-size: 36px; }
+          .modern-feature-card { padding: 40px 30px; }
         }
       `}} />
     </section>

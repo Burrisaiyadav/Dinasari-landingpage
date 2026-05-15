@@ -66,7 +66,10 @@ const Header = () => {
               {link.name}
             </a>
           ))}
-          <button className="btn btn-primary">
+          <button 
+            className="btn btn-primary"
+            onClick={(e) => handleNavClick(e, '#download')}
+          >
             <Download size={18} />
             Download App
           </button>
@@ -117,7 +120,11 @@ const Header = () => {
                   {link.name}
                 </a>
               ))}
-              <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+              <button 
+                className="btn btn-primary" 
+                style={{ width: '100%', justifyContent: 'center' }}
+                onClick={(e) => handleNavClick(e, '#download')}
+              >
                 <Download size={18} />
                 Download App
               </button>

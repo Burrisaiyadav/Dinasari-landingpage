@@ -4,7 +4,7 @@ import { Download, Smartphone, Apple } from 'lucide-react';
 
 const DownloadCTA = () => {
   return (
-    <section className="section-padding">
+    <section id="download" className="section-padding">
       <div className="container">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
