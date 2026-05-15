@@ -19,9 +19,9 @@ const TrustImpact = () => {
   ];
 
   return (
-    <section className="section-padding" style={{ background: '#fff' }}>
+    <section id="trust-impact" className="section-padding" style={{ background: '#fff' }}>
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '80px', alignItems: 'center' }}>
+        <div className="trust-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '80px', alignItems: 'center' }}>
           <div>
             <h2 style={{ fontSize: '42px', fontWeight: '800', marginBottom: '24px' }}>
               Real Impact in <br />
@@ -67,7 +67,7 @@ const TrustImpact = () => {
                 <div style={{ display: 'flex', gap: '4px', marginBottom: '16px' }}>
                   {[...Array(t.rating)].map((_, i) => <Star key={i} size={16} fill="var(--yellow)" color="var(--yellow)" />)}
                 </div>
-                <p style={{ fontSize: '18px', fontWeight: '500', marginBottom: '24px', position: 'relative', zIndex: 1 }}>
+                <p className="testimonial-text" style={{ fontSize: '18px', fontWeight: '500', marginBottom: '24px', position: 'relative', zIndex: 1 }}>
                   "{t.text}"
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -85,10 +85,15 @@ const TrustImpact = () => {
       
       <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 992px) {
-          #trust-impact div[style*="display: grid; grid-template-columns: 1fr 1.5fr"] {
+          .trust-grid {
             grid-template-columns: 1fr !important;
             gap: 60px !important;
           }
+          #trust-impact h2 { font-size: 32px !important; }
+        }
+        @media (max-width: 576px) {
+          .testimonial-text { font-size: 16px !important; }
+          #trust-impact { padding: 60px 0 !important; }
         }
       `}} />
     </section>

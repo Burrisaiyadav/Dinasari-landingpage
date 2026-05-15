@@ -61,6 +61,50 @@ const Header = () => {
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              style={{
+                position: 'absolute',
+                top: '100%',
+                left: 0,
+                right: 0,
+                background: 'white',
+                padding: '24px',
+                borderBottom: '1px solid rgba(0,0,0,0.1)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                zIndex: 999,
+                boxShadow: '0 10px 30px rgba(0,0,0,0.05)'
+              }}
+            >
+              {navLinks.map((link) => (
+                <a 
+                  key={link.name} 
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  style={{ 
+                    fontWeight: '600', 
+                    color: 'var(--text-main)',
+                    fontSize: '18px'
+                  }}
+                >
+                  {link.name}
+                </a>
+              ))}
+              <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+                <Download size={18} />
+                Download App
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
         .nav-link-hover:hover {
