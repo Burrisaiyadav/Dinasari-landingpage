@@ -104,7 +104,6 @@ const Header = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
         .nav-link-hover:hover {
