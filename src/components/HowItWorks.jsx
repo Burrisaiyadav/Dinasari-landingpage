@@ -1,122 +1,154 @@
 import React from 'react';
-import { Smartphone, UserSearch, HardHat, CheckCircle2 } from 'lucide-react';
+import { Smartphone, UserSearch, HardHat, CheckCircle2, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const HowItWorks = () => {
   const steps = [
     { 
       number: "01", 
       icon: <Smartphone size={32} />, 
-      title: "Quick Registration", 
-      desc: "One-tap secure login with your mobile number. No complex passwords needed." 
+      title: "One-Tap Entry", 
+      desc: "Register securely using just your mobile number. No complex passwords or forms. AI verifies your identity instantly.",
+      color: "#3B82F6"
     },
     { 
       number: "02", 
       icon: <UserSearch size={32} />, 
-      title: "Smart Matching", 
-      desc: "AI connects the right workers to the right farms based on skill and location." 
+      title: "AI Matching", 
+      desc: "Our platform intelligently matches workers to farm requirements based on proximity, skill, and seasonal needs.",
+      color: "#10B981"
     },
     { 
       number: "03", 
       icon: <HardHat size={32} />, 
-      title: "Secure Operations", 
-      desc: "Verified jobs and instant digital payments ensure peace of mind for everyone." 
+      title: "Verified Output", 
+      desc: "Work is logged digitally. Payments are released instantly upon job completion through our secure escrow system.",
+      color: "#F59E0B"
     }
   ];
 
   return (
-    <section id="how-it-works" style={{ background: '#f8faf9', padding: '120px 0' }}>
+    <section id="how-it-works" style={{ background: '#f8faf9', padding: '160px 0', overflow: 'hidden' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '100px' }}>
-          <div style={{ 
-            display: 'inline-block', 
-            padding: '8px 20px', 
-            background: 'rgba(31, 138, 61, 0.08)', 
-            borderRadius: '50px',
-            color: 'var(--primary)',
-            fontWeight: '700',
-            fontSize: '14px',
-            marginBottom: '24px',
-            textTransform: 'uppercase'
-          }}>
-            Seamless Process
-          </div>
-          <h2 style={{ fontSize: '52px', fontWeight: '900', color: 'var(--text-main)', letterSpacing: '-1.5px' }}>
-            How it <span className="text-gradient">Works</span>
-          </h2>
+        <div style={{ textAlign: 'center', marginBottom: '120px' }}>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="trust-pill"
+            style={{ color: 'var(--primary)', marginBottom: '32px' }}
+          >
+            The Journey
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            style={{ fontSize: '56px', fontWeight: '900', color: 'var(--text-main)', letterSpacing: '-3px', lineHeight: '1.1' }}
+          >
+            Simple. Secure. <span className="text-gradient">Scaleable.</span>
+          </motion.h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0px', position: 'relative' }}>
+        <div className="steps-container">
           {steps.map((s, idx) => (
-            <div key={idx} style={{ position: 'relative', padding: '0 40px' }}>
-              {/* Connection Line */}
-              {idx < 2 && (
-                <div style={{
-                  position: 'absolute',
-                  top: '60px',
-                  right: '-50px',
-                  width: '100px',
-                  height: '2px',
-                  background: 'linear-gradient(90deg, var(--primary) 0%, transparent 100%)',
-                  opacity: 0.2,
-                  zIndex: 0
-                }} className="desktop-line" />
-              )}
+            <motion.div 
+              key={idx} 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.2 }}
+              className="step-card"
+            >
+              <div className="step-number-bg">{s.number}</div>
               
-              <div style={{ 
-                width: '80px', 
-                height: '80px', 
-                background: 'white', 
-                borderRadius: '24px', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                boxShadow: '0 20px 40px rgba(0,0,0,0.06)',
-                marginBottom: '40px',
-                color: 'var(--primary)',
-                position: 'relative',
-                zIndex: 1
-              }}>
+              <div className="step-icon-wrapper" style={{ '--step-color': s.color }}>
                 {s.icon}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '-10px',
-                  right: '-10px',
-                  width: '32px',
-                  height: '32px',
-                  background: 'var(--primary)',
-                  borderRadius: '10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'white',
-                  fontWeight: '800',
-                  fontSize: '14px'
-                }}>
-                  {s.number}
-                </div>
+              </div>
+              
+              <div className="step-content">
+                <h4 style={{ fontSize: '24px', fontWeight: '800', marginBottom: '20px' }}>{s.title}</h4>
+                <p style={{ fontSize: '17px', color: 'var(--text-muted)', lineHeight: '1.6' }}>{s.desc}</p>
               </div>
 
-              <h4 style={{ fontSize: '24px', fontWeight: '800', marginBottom: '20px', color: 'var(--text-main)' }}>{s.title}</h4>
-              <p style={{ fontSize: '17px', color: 'var(--text-muted)', lineHeight: '1.6' }}>{s.desc}</p>
-              
-              <div style={{ marginTop: '32px', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--primary)', fontWeight: '700', fontSize: '14px' }}>
-                <CheckCircle2 size={16} /> Verified Flow
-              </div>
-            </div>
+              {idx < 2 && (
+                <div className="step-connector">
+                  <ArrowRight size={24} />
+                </div>
+              )}
+            </motion.div>
           ))}
         </div>
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        @media (max-width: 992px) {
-          #how-it-works div[style*="grid-template-columns: repeat(3, 1fr)"] {
-            grid-template-columns: 1fr !important;
-            gap: 80px !important;
+        .steps-container {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 60px;
+          position: relative;
+        }
+        .step-card {
+          position: relative;
+          background: white;
+          padding: 60px 40px;
+          border-radius: 40px;
+          border: 1px solid rgba(0,0,0,0.05);
+          box-shadow: 0 20px 50px rgba(0,0,0,0.02);
+          transition: all 0.4s ease;
+        }
+        .step-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 30px 60px rgba(31, 138, 61, 0.08);
+          border-color: rgba(31, 138, 61, 0.2);
+        }
+        .step-number-bg {
+          position: absolute;
+          top: 30px;
+          right: 40px;
+          font-size: 80px;
+          font-weight: 900;
+          color: rgba(0,0,0,0.03);
+          line-height: 1;
+        }
+        .step-icon-wrapper {
+          width: 80px;
+          height: 80px;
+          background: color-mix(in srgb, var(--step-color), transparent 90%);
+          color: var(--step-color);
+          border-radius: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 40px;
+          position: relative;
+          z-index: 1;
+        }
+        .step-content {
+          position: relative;
+          z-index: 1;
+        }
+        .step-connector {
+          position: absolute;
+          right: -42px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: rgba(0,0,0,0.1);
+          display: flex;
+          align-items: center;
+        }
+        @media (max-width: 1200px) {
+          .steps-container {
+            grid-template-columns: 1fr;
+            gap: 40px;
           }
-          .desktop-line { display: none; }
-          #how-it-works div[style*="padding: 0 40px"] { padding: 0 !important; text-align: center; }
-          #how-it-works div[style*="width: 80px"] { margin-left: auto; margin-right: auto; }
-          #how-it-works div[style*="display: flex; alignItems: center; gap: 8px"] { justify-content: center; }
+          .step-connector {
+            display: none;
+          }
+          .step-card {
+            padding: 40px;
+          }
         }
       `}} />
     </section>
@@ -124,3 +156,4 @@ const HowItWorks = () => {
 };
 
 export default HowItWorks;
+
