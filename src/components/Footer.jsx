@@ -25,7 +25,7 @@ const Footer = () => {
       }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1.5fr', gap: '60px', marginBottom: '80px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr 1.5fr', gap: '40px', marginBottom: '80px' }}>
           <div>
             <Logo size={32} light={true} />
             <p style={{ color: 'rgba(255, 255, 255, 0.7)', marginTop: '24px', maxWidth: '300px', fontSize: '15px', lineHeight: '1.8' }}>
@@ -33,23 +33,33 @@ const Footer = () => {
             </p>
           </div>
 
-          <div>
-            <h4 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '24px', color: 'white' }}>Company</h4>
+          <div className="footer-column">
+            <h4 style={{ color: 'white', marginBottom: '24px', fontSize: '18px' }}>Company</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <li><Link to="/about" className="footer-link">About Us</Link></li>
               <li><Link to="/careers" className="footer-link">Careers</Link></li>
-              <li><Link to="/#investors" className="footer-link">Investors</Link></li>
-              <li><Link to="#" className="footer-link">Impact Report</Link></li>
+              <li><Link to="/investors" className="footer-link">Investors</Link></li>
+              <li><Link to="/impact" className="footer-link">Impact Report</Link></li>
             </ul>
           </div>
 
-          <div>
-            <h4 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '24px', color: 'white' }}>Support</h4>
+          <div className="footer-column">
+            <h4 style={{ color: 'white', marginBottom: '24px', fontSize: '18px' }}>Support</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <li><Link to="#" className="footer-link">Help Center</Link></li>
-              <li><Link to="#" className="footer-link">Terms of Service</Link></li>
-              <li><Link to="#" className="footer-link">Privacy Policy</Link></li>
-              <li><Link to="#" className="footer-link">Safety</Link></li>
+              <li><Link to="/help" className="footer-link">Help Center</Link></li>
+              <li><Link to="/safety" className="footer-link">Safety & Trust</Link></li>
+              <li><Link to="/about" className="footer-link">Contact Us</Link></li>
+              <li><Link to="/help" className="footer-link">FAQs</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <h4 style={{ color: 'white', marginBottom: '24px', fontSize: '18px' }}>Legal</h4>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <li><Link to="/terms" className="footer-link">Terms of Service</Link></li>
+              <li><Link to="/privacy" className="footer-link">Privacy Policy</Link></li>
+              <li><Link to="/privacy" className="footer-link">Cookie Policy</Link></li>
+              <li><Link to="/terms" className="footer-link">User Agreement</Link></li>
             </ul>
           </div>
 

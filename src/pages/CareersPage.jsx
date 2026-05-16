@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Briefcase, MapPin, Clock, ArrowRight, Zap, Globe, Users, Heart, X, Send, Paperclip } from 'lucide-react';
+import { db } from '../services/mockDb';
 
 const CareersPage = () => {
   const [selectedJob, setSelectedJob] = useState(null);
@@ -42,10 +43,23 @@ const CareersPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const data = {
+      jobTitle: selectedJob?.title,
+      name: e.target[0].value,
+      email: e.target[1].value,
+      resume: e.target[2].value,
+      portfolio: e.target[3]?.value || 'N/A',
+      timestamp: new Date().toISOString()
+    };
+    
+    // Save to Mock DB
+    const entry = db.applications.add(data);
+    console.log("New Application Received & Stored:", entry);
+    
     setIsSubmitted(true);
     setTimeout(() => {
       setIsModalOpen(false);
-    }, 2000);
+    }, 3000);
   };
 
   return (

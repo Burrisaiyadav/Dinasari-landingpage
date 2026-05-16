@@ -20,11 +20,9 @@ const Header = () => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Solutions', href: '/#solutions' },
-    { name: 'Features', href: '/#features' },
     { name: 'About Us', href: '/about' },
     { name: 'Careers', href: '/careers' },
-    { name: 'Investors', href: '/#investors' },
+    { name: 'Investors', href: '/investors' },
   ];
 
   const handleNavClick = (e, href) => {
