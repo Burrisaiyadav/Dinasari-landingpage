@@ -69,9 +69,9 @@ const Header = () => {
       className={`header-fixed ${isScrolled ? 'header-scrolled' : 'py-6 bg-transparent'}`}
     >
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div onClick={(e) => handleNavClick(e, '/')} style={{ cursor: 'pointer' }}>
+        <Link to="/" onClick={(e) => handleNavClick(e, '/')} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
           <Logo size={36} />
-        </div>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="desktop-nav" style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
