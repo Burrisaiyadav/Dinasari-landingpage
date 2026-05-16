@@ -30,27 +30,26 @@ const InvestorPage = () => {
     setIsSubmitted(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       type: modalType,
       name: e.target[0].value,
       email: e.target[1].value,
       firm: e.target[2].value,
-      message: e.target[3].value,
-      timestamp: new Date().toISOString()
+      message: e.target[3].value
     };
     
-    // Save to Mock DB
-    const entry = db.inquiries.add(data);
-    console.log("Investor Inquiry Received & Stored:", entry);
-    
-    setFormData(entry);
-    setIsSubmitted(true);
-    // Modal stays open for developer verification
-    setTimeout(() => {
-      // setIsModalOpen(false); 
-    }, 5000);
+    try {
+      // Save to Prisma DB via API
+      const entry = await db.inquiries.add(data);
+      console.log("Investor Inquiry Received & Stored in Prisma:", entry);
+      
+      setFormData(entry);
+      setIsSubmitted(true);
+    } catch (error) {
+      alert("Submission failed. Please check if the backend server is running.");
+    }
   };
 
   return (

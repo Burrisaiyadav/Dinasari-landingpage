@@ -41,25 +41,28 @@ const CareersPage = () => {
     setIsSubmitted(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       jobTitle: selectedJob?.title,
       name: e.target[0].value,
       email: e.target[1].value,
       resume: e.target[2].value,
-      portfolio: e.target[3]?.value || 'N/A',
-      timestamp: new Date().toISOString()
+      portfolio: e.target[3]?.value || 'N/A'
     };
     
-    // Save to Mock DB
-    const entry = db.applications.add(data);
-    console.log("New Application Received & Stored:", entry);
-    
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsModalOpen(false);
-    }, 3000);
+    try {
+      // Save to Prisma DB via API
+      const entry = await db.applications.add(data);
+      console.log("New Application Received & Stored in Prisma:", entry);
+      
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsModalOpen(false);
+      }, 3000);
+    } catch (error) {
+      alert("Submission failed. Please check if the backend server is running.");
+    }
   };
 
   return (

@@ -1,47 +1,52 @@
-// Simple LocalStorage based database for Dinasari
-const DB_NAME = 'dinasari_db';
-
-const getDb = () => {
-  const data = localStorage.getItem(DB_NAME);
-  return data ? JSON.parse(data) : { applications: [], inquiries: [], newsletter: [] };
-};
-
-const saveDb = (db) => {
-  localStorage.setItem(DB_NAME, JSON.stringify(db));
-};
+// Prisma-powered API service for Dinasari
+const API_URL = 'http://localhost:5000/api';
 
 export const db = {
   // Applications (Careers)
   applications: {
-    add: (data) => {
-      const dbData = getDb();
-      const newEntry = { id: Date.now(), ...data, status: 'pending' };
-      dbData.applications.push(newEntry);
-      saveDb(dbData);
-      return newEntry;
-    },
-    getAll: () => getDb().applications
+    add: async (data) => {
+      try {
+        const response = await fetch(`${API_URL}/applications`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        return await response.json();
+      } catch (error) {
+        console.error("API Error:", error);
+        throw error;
+      }
+    }
   },
 
   // Investor Inquiries
   inquiries: {
-    add: (data) => {
-      const dbData = getDb();
-      const newEntry = { id: Date.now(), ...data };
-      dbData.inquiries.push(newEntry);
-      saveDb(dbData);
-      return newEntry;
-    },
-    getAll: () => getDb().inquiries
+    add: async (data) => {
+      try {
+        const response = await fetch(`${API_URL}/inquiries`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        return await response.json();
+      } catch (error) {
+        console.error("API Error:", error);
+        throw error;
+      }
+    }
   },
 
   // Newsletter
   newsletter: {
-    subscribe: (email) => {
-      const dbData = getDb();
-      if (!dbData.newsletter.includes(email)) {
-        dbData.newsletter.push(email);
-        saveDb(dbData);
+    subscribe: async (email) => {
+      try {
+        await fetch(`${API_URL}/newsletter`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+      } catch (error) {
+        console.error("API Error:", error);
       }
     }
   }
