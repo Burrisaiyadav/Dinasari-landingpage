@@ -1,43 +1,37 @@
 import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
-import Hero from './components/Hero'
-import ProblemSolution from './components/ProblemSolution'
-import HowItWorks from './components/HowItWorks'
-import Features from './components/Features'
-import TraditionalEmpowerment from './components/TraditionalEmpowerment'
-import MachinerySection from './components/MachinerySection'
-import InvestorSection from './components/InvestorSection'
-import TrustImpact from './components/TrustImpact'
-import DownloadCTA from './components/DownloadCTA'
 import Footer from './components/Footer'
+import HomePage from './pages/HomePage'
+import AboutPage from './pages/AboutPage'
+import CareersPage from './pages/CareersPage'
 
 function App() {
   return (
-    <div className="app">
-      <Header />
-      <main>
-        <Hero />
-        <ProblemSolution />
-        <HowItWorks />
-        <Features />
-        <TraditionalEmpowerment />
-        <MachinerySection />
-        <TrustImpact />
-        <InvestorSection />
-        <DownloadCTA />
-      </main>
-      <Footer />
+    <Router>
+      <div className="app">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/careers" element={<CareersPage />} />
+          </Routes>
+        </main>
+        <Footer />
 
-      <style dangerouslySetInnerHTML={{ __html: `
-        .app {
-          overflow-x: hidden;
-        }
-        /* Smooth scrolling */
-        html {
-          scroll-behavior: smooth;
-        }
-      `}} />
-    </div>
+        <style dangerouslySetInnerHTML={{ __html: `
+          .app {
+            overflow-x: hidden;
+            padding-top: 80px; /* Space for fixed header */
+          }
+          /* Smooth scrolling */
+          html {
+            scroll-behavior: smooth;
+          }
+        `}} />
+      </div>
+    </Router>
   )
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import Logo from './Logo';
 import { Menu, X, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -6,6 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,30 +19,53 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Solutions', href: '#solutions' },
-    { name: 'Features', href: '#features' },
-    { name: 'How it Works', href: '#how-it-works' },
-    { name: 'Investors', href: '#investors' },
+    { name: 'Home', href: '/' },
+    { name: 'Solutions', href: '/#solutions' },
+    { name: 'Features', href: '/#features' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Careers', href: '/careers' },
+    { name: 'Investors', href: '/#investors' },
   ];
 
   const handleNavClick = (e, href) => {
-    e.preventDefault();
     setMobileMenuOpen(false);
     
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    
-    if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+    if (href.startsWith('/#')) {
+      e.preventDefault();
+      const targetId = href.replace('/#', '');
+      
+      if (location.pathname !== '/') {
+        navigate('/');
+        // Wait for navigation and rendering before scrolling
+        setTimeout(() => {
+          const element = document.getElementById(targetId);
+          if (element) {
+            scrollToElement(element);
+          }
+        }, 100);
+      } else {
+        const element = document.getElementById(targetId);
+        if (element) {
+          scrollToElement(element);
+        }
+      }
+    } else if (href === '/') {
+      if (location.pathname === '/') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
+  };
+
+  const scrollToElement = (element) => {
+    const headerOffset = 80;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
   };
 
   return (
@@ -52,23 +78,34 @@ const Header = () => {
         {/* Desktop Nav */}
         <nav className="desktop-nav" style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
           {navLinks.map((link) => (
-            <a 
+            <Link 
               key={link.name} 
-              href={link.href}
+              to={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
               style={{ 
                 fontWeight: '500', 
-                color: 'var(--text-main)',
+                color: location.pathname === link.href ? 'var(--primary)' : 'var(--text-main)',
                 fontSize: '15px'
               }}
               className="nav-link-hover"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
           <button 
             className="btn btn-primary"
-            onClick={(e) => handleNavClick(e, '#download')}
+            onClick={() => {
+              if (location.pathname !== '/') {
+                navigate('/');
+                setTimeout(() => {
+                  const el = document.getElementById('download');
+                  if (el) scrollToElement(el);
+                }, 100);
+              } else {
+                const el = document.getElementById('download');
+                if (el) scrollToElement(el);
+              }
+            }}
           >
             <Download size={18} />
             Download App
@@ -107,23 +144,35 @@ const Header = () => {
               }}
             >
               {navLinks.map((link) => (
-                <a 
+                <Link 
                   key={link.name} 
-                  href={link.href}
+                  to={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
                   style={{ 
                     fontWeight: '600', 
-                    color: 'var(--text-main)',
+                    color: location.pathname === link.href ? 'var(--primary)' : 'var(--text-main)',
                     fontSize: '18px'
                   }}
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
               <button 
                 className="btn btn-primary" 
                 style={{ width: '100%', justifyContent: 'center' }}
-                onClick={(e) => handleNavClick(e, '#download')}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (location.pathname !== '/') {
+                    navigate('/');
+                    setTimeout(() => {
+                      const el = document.getElementById('download');
+                      if (el) scrollToElement(el);
+                    }, 100);
+                  } else {
+                    const el = document.getElementById('download');
+                    if (el) scrollToElement(el);
+                  }
+                }}
               >
                 <Download size={18} />
                 Download App

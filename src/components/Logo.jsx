@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Logo = ({ size = 40, showText = true, light = false }) => {
   return (
-    <div className="logo-container" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+    <Link to="/" className="logo-container" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
       <img 
         src="/logo.png" 
         alt="Dinasari Logo"
@@ -22,7 +23,7 @@ const Logo = ({ size = 40, showText = true, light = false }) => {
           Dinasari
         </span>
       )}
-    </div>
+    </Link>
   );
 };
 

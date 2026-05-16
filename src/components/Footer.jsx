@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import { Phone, MapPin, ArrowRight } from 'lucide-react';
 
@@ -35,20 +36,20 @@ const Footer = () => {
           <div>
             <h4 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '24px', color: 'white' }}>Company</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <li><a href="#" className="footer-link">About Us</a></li>
-              <li><a href="#" className="footer-link">Careers</a></li>
-              <li><a href="#" className="footer-link">Investors</a></li>
-              <li><a href="#" className="footer-link">Impact Report</a></li>
+              <li><Link to="/about" className="footer-link">About Us</Link></li>
+              <li><Link to="/careers" className="footer-link">Careers</Link></li>
+              <li><Link to="/#investors" className="footer-link">Investors</Link></li>
+              <li><Link to="#" className="footer-link">Impact Report</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '24px', color: 'white' }}>Support</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <li><a href="#" className="footer-link">Help Center</a></li>
-              <li><a href="#" className="footer-link">Terms of Service</a></li>
-              <li><a href="#" className="footer-link">Privacy Policy</a></li>
-              <li><a href="#" className="footer-link">Safety</a></li>
+              <li><Link to="#" className="footer-link">Help Center</Link></li>
+              <li><Link to="#" className="footer-link">Terms of Service</Link></li>
+              <li><Link to="#" className="footer-link">Privacy Policy</Link></li>
+              <li><Link to="#" className="footer-link">Safety</Link></li>
             </ul>
           </div>
 
