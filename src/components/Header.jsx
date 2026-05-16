@@ -47,11 +47,9 @@ const Header = () => {
           scrollToElement(element);
         }
       }
-    } else if (href === '/') {
-      if (location.pathname === '/') {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+    } else if (location.pathname === href) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -71,7 +69,9 @@ const Header = () => {
       className={`header-fixed ${isScrolled ? 'header-scrolled' : 'py-6 bg-transparent'}`}
     >
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Logo size={36} />
+        <div onClick={(e) => handleNavClick(e, '/')} style={{ cursor: 'pointer' }}>
+          <Logo size={36} />
+        </div>
 
         {/* Desktop Nav */}
         <nav className="desktop-nav" style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
