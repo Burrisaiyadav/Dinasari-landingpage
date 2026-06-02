@@ -7,6 +7,7 @@ const CareersPage = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [resumeFileName, setResumeFileName] = useState('');
 
   const benefits = [
     { 
@@ -39,16 +40,18 @@ const CareersPage = () => {
     setSelectedJob(job);
     setIsModalOpen(true);
     setIsSubmitted(false);
+    setResumeFileName('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const elements = e.currentTarget.elements;
     const data = {
       jobTitle: selectedJob?.title,
-      name: e.target[0].value,
-      email: e.target[1].value,
-      resume: e.target[2].value,
-      portfolio: e.target[3]?.value || 'N/A'
+      name: elements.name.value,
+      email: elements.email.value,
+      resume: resumeFileName,
+      portfolio: elements.portfolio.value || 'N/A'
     };
     
     try {
@@ -206,31 +209,43 @@ const CareersPage = () => {
                     <div className="form-grid">
                       <div className="form-group">
                         <label>Full Name <span className="required-star">*</span></label>
-                        <input type="text" placeholder="John Doe" required />
+                        <input name="name" type="text" placeholder="John Doe" required />
                       </div>
                       <div className="form-group">
                         <label>Email Address <span className="required-star">*</span></label>
-                        <input type="email" placeholder="john@example.com" required />
+                        <input name="email" type="email" placeholder="john@example.com" required />
                       </div>
                     </div>
 
                     <div className="form-group">
                       <label>LinkedIn / Portfolio URL</label>
-                      <input type="url" placeholder="https://linkedin.com/in/..." />
+                      <input name="portfolio" type="url" placeholder="https://linkedin.com/in/..." />
                     </div>
 
                     <div className="form-group">
                       <label>Resume / CV <span className="required-star">*</span></label>
                       <div className="file-upload">
                         <Paperclip size={20} />
-                        <span>Upload PDF (Max 5MB)</span>
-                        <input type="file" accept=".pdf" required />
+                        <span>{resumeFileName || "Upload PDF (Max 5MB)"}</span>
+                        <input 
+                          name="resume"
+                          type="file" 
+                          accept=".pdf" 
+                          required 
+                          onChange={(e) => {
+                            if (e.target.files && e.target.files.length > 0) {
+                              setResumeFileName(e.target.files[0].name);
+                            } else {
+                              setResumeFileName('');
+                            }
+                          }}
+                        />
                       </div>
                     </div>
 
                     <div className="form-group">
                       <label>Why Dinasari?</label>
-                      <textarea placeholder="Tell us why you want to join the rural revolution..." rows="4"></textarea>
+                      <textarea name="whyDinasari" placeholder="Tell us why you want to join the rural revolution..." rows="4"></textarea>
                     </div>
 
                     <button type="submit" className="btn btn-primary submit-btn">
