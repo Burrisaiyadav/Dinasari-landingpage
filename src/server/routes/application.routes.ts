@@ -10,7 +10,7 @@ const applicationSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   email: z.string().email('Invalid email address'),
   resume: z.string().min(1, 'Resume path or file is required'),
-  portfolio: z.string().url('Invalid portfolio URL').optional().nullable().or(z.literal('')),
+  portfolio: z.string().optional().nullable(),
 });
 
 router.post('/', validateBody(applicationSchema), async (req: Request, res: Response, next: NextFunction): Promise<void> => {
