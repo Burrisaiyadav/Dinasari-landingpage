@@ -1,0 +1,50 @@
+### Health Check
+GET http://localhost:5000/health
+
+### Subscribe Valid Email
+POST http://localhost:5000/api/subscribers
+Content-Type: application/json
+
+{
+  "email": "burrisai42@gmail.com"
+}
+
+### Subscribe Duplicate Email (Run the valid request twice to trigger this response)
+POST http://localhost:5000/api/subscribers
+Content-Type: application/json
+
+{
+  "email": "burrisai42@gmail.com"
+}
+
+### Subscribe Invalid Email (Validation error)
+POST http://localhost:5000/api/subscribers
+Content-Type: application/json
+
+{
+  "email": "invalid-email-address"
+}
+
+### Careers Form Submission Test (Alias and validation)
+POST http://localhost:5000/api/applications
+Content-Type: application/json
+
+{
+  "jobTitle": "Frontend Engineer",
+  "name": "Ramesh Kumar",
+  "email": "ramesh@example.com",
+  "resume": "/resumes/ramesh-cv.pdf",
+  "portfolio": "https://rameshcodes.dev"
+}
+
+### Investors Form Submission Test (Alias and validation)
+POST http://localhost:5000/api/inquiries
+Content-Type: application/json
+
+{
+  "type": "General Inquiry",
+  "name": "Priya Sharma",
+  "email": "priya@capital.com",
+  "firm": "Vanguard Ventures",
+  "message": "Interested in Series A investment opportunities."
+}

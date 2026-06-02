@@ -40,13 +40,15 @@ export const db = {
   newsletter: {
     subscribe: async (email) => {
       try {
-        await fetch(`${API_URL}/newsletter`, {
+        const response = await fetch(`${API_URL}/subscribers`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email })
         });
+        return await response.json();
       } catch (error) {
         console.error("API Error:", error);
+        return { success: false, message: "Failed to connect to the server." };
       }
     }
   }

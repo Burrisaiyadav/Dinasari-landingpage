@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
-import { Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Phone, MapPin, ArrowRight, Loader2 } from 'lucide-react';
+import { db } from '../services/mockDb';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ type: '', message: '' });
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email || !email.trim()) return;
+
+    setLoading(true);
+    setStatus({ type: '', message: '' });
+
+    try {
+      const res = await db.newsletter.subscribe(email.trim());
+      if (res && res.success) {
+        setStatus({ type: 'success', message: res.message || 'Successfully subscribed.' });
+        setEmail('');
+      } else {
+        setStatus({ type: 'error', message: res?.message || 'Subscription failed.' });
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus({ type: 'error', message: 'Failed to connect. Please try again.' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <footer style={{ 
       background: '#0a2a16', 
@@ -68,7 +96,7 @@ const Footer = () => {
             <p style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '14px', marginBottom: '20px' }}>
               Get the latest news on rural tech and agricultural trends.
             </p>
-            <div style={{ 
+            <form onSubmit={handleSubscribe} style={{ 
               display: 'flex', 
               background: 'rgba(255, 255, 255, 0.05)', 
               borderRadius: '12px', 
@@ -78,6 +106,10 @@ const Footer = () => {
               <input 
                 type="email" 
                 placeholder="Email address" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={loading}
+                required
                 style={{ 
                   background: 'transparent', 
                   border: 'none', 
@@ -88,20 +120,43 @@ const Footer = () => {
                   fontSize: '14px'
                 }} 
               />
-              <button style={{ 
-                background: 'var(--primary)', 
-                color: 'white', 
-                border: 'none', 
-                borderRadius: '8px', 
-                width: '40px', 
-                height: '40px', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center' 
-              }}>
-                <ArrowRight size={18} />
+              <button 
+                type="submit"
+                disabled={loading}
+                style={{ 
+                  background: 'var(--primary)', 
+                  color: 'white', 
+                  border: 'none', 
+                  borderRadius: '8px', 
+                  width: '40px', 
+                  height: '40px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  cursor: loading ? 'not-allowed' : 'pointer',
+                  opacity: loading ? 0.7 : 1,
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                {loading ? <Loader2 size={18} className="spin-icon" /> : <ArrowRight size={18} />}
               </button>
-            </div>
+            </form>
+
+            {status.message && (
+              <div style={{
+                marginTop: '12px',
+                padding: '10px 14px',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: '500',
+                transition: 'all 0.3s ease',
+                background: status.type === 'success' ? 'rgba(31, 138, 61, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                color: status.type === 'success' ? '#4ade80' : '#f87171',
+                border: `1px solid ${status.type === 'success' ? 'rgba(74, 222, 128, 0.2)' : 'rgba(248, 113, 113, 0.2)'}`
+              }}>
+                {status.message}
+              </div>
+            )}
             
             <div style={{ marginTop: '30px' }}>
               <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', marginBottom: '12px' }}>
@@ -150,6 +205,13 @@ const Footer = () => {
           color: var(--primary-light); 
           transform: translateX(5px);
           display: inline-block;
+        }
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .spin-icon {
+          animation: spin 1s linear infinite;
         }
         @media (max-width: 992px) {
           footer div[style*="grid-template-columns"] {
