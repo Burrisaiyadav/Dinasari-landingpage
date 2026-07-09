@@ -79,49 +79,106 @@ const LegalLayout = ({ title, lastUpdated, children }) => {
 };
 
 export const TermsPage = () => (
-  <LegalLayout title="Terms of Service" lastUpdated="May 15, 2024">
-    <h2>1. Acceptance of Terms</h2>
-    <p>By accessing or using the Dinasari Agritech platform, you agree to be bound by these Terms of Service. If you do not agree to all of these terms, do not use our services.</p>
-    
-    <h2>2. Description of Service</h2>
-    <p>Dinasari provides a marketplace connecting farmers with agricultural labor and machinery owners. We do not employ workers directly but facilitate the connection and payment processing.</p>
-    
-    <h2>3. User Responsibilities</h2>
-    <p>As a user, you are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
-    
-    <h2>4. Payment Terms</h2>
-    <p>All payments made through the platform are subject to a platform fee. Workers are paid after the completion of work as verified by the farmer through the app.</p>
+  <LegalLayout title="Terms of Service" lastUpdated="July 2026">
+    <h2>1. Governing Law & Compliance</h2>
+    <p>These terms are governed by the laws of India, including the Indian Contract Act, 1872 and the Information Technology Act, 2000. Exclusive jurisdiction is Bengaluru, India.</p>
+
+    <h2>2. Platform Intermediary Status</h2>
+    <p>Dinasari operates as an intermediary under Section 79 of the IT Act, 2000. We connect independent Farmers with independent Workers/Leaders. We do not employ workers or control daily farming work.</p>
+
+    <h2>3. Eligibility</h2>
+    <p>You must be at least 18 years old. Under the Child Labour (Prohibition and Regulation) Act, 1986, child labor under 14 is strictly prohibited.</p>
+
+    <h2>4. User Conduct</h2>
+    <p>Do not post fraudulent jobs. Do not discriminate or harass based on caste, religion, gender, age, language, or region.</p>
+
+    <h2>5. Payments & Fees</h2>
+    <p>Farmers must pay workers promptly. Dinasari reserves the right to charge platform fees in the future, which will be shown beforehand.</p>
+
+    <h2>6. Disclaimers & Liability</h2>
+    <p>The app is provided 'as is'. We are not liable for crop yield failures, farm hazards, or wage defaults between parties.</p>
+
+    <h2>7. Grievance Redressal</h2>
+    <p>
+      <strong>Grievance Officer:</strong> Hitesh<br />
+      <strong>Email:</strong> support@dinasari.in<br />
+      <strong>Acknowledgment:</strong> 24 Hours | <strong>Resolution:</strong> 15 Days.
+    </p>
   </LegalLayout>
 );
 
 export const PrivacyPage = () => (
-  <LegalLayout title="Privacy Policy" lastUpdated="May 15, 2024">
-    <h2>1. Information Collection</h2>
-    <p>We collect information you provide directly to us when you create an account, such as your name, contact information, and farm/business details.</p>
-    
-    <h2>2. How We Use Information</h2>
-    <p>We use the information we collect to provide, maintain, and improve our services, including matching farmers with workers and processing payments.</p>
-    
-    <h2>3. Information Sharing</h2>
-    <p>We do not share your personal information with third parties except as necessary to provide our services (e.g., sharing a worker's name with a farmer) or as required by law.</p>
-    
-    <h2>4. Data Security</h2>
-    <p>We implement appropriate technical and organizational measures to protect the security of your personal information against unauthorized access or disclosure.</p>
+  <LegalLayout title="Privacy Policy (DPDP Act 2023 Compliant)" lastUpdated="July 2026">
+    <h2>1. Consent & Rights (Data Principal)</h2>
+    <p>By using Dinasari, you give your explicit consent to process your personal data.</p>
+    <p>Your rights under India's Digital Personal Data Protection (DPDP) Act, 2023:</p>
+    <ul>
+      <li><strong>Right to Access:</strong> Request summary of processed data.</li>
+      <li><strong>Right to Correction/Erasure:</strong> Correct errors or delete account data.</li>
+      <li><strong>Right to Withdraw Consent:</strong> Revoke consent anytime.</li>
+      <li><strong>Right to Grievance:</strong> Raise queries to the DPO or escalate to the DPB of India.</li>
+    </ul>
+
+    <h2>2. Data We Collect</h2>
+    <ul>
+      <li>Name, Phone Number, Profile Photo, Age, Gender.</li>
+      <li><strong>Role:</strong> Farmer, Worker, Leader, Machinery Owner.</li>
+      <li><strong>GPS Location (Foreground & Background):</strong> Essential to find nearby jobs, match workers, navigate, and verify QR attendance.</li>
+      <li>Bank/UPI details for payment tracking.</li>
+    </ul>
+
+    <h2>3. Use of Personal Data</h2>
+    <p>Data is processed to match jobs, confirm QR attendance, send OTPs via SMS, and resolve disputes.</p>
+
+    <h2>4. Data Retention & Security</h2>
+    <p>Data is kept as long as your account is active. We use industry-standard HTTPS, JWT, and encrypted databases to protect your data.</p>
+
+    <h2>5. Grievance / Data Protection Officer</h2>
+    <p><strong>Contact:</strong> support@dinasari.in</p>
   </LegalLayout>
 );
 
 export const SafetyPage = () => (
-  <LegalLayout title="Safety & Trust" lastUpdated="May 15, 2024">
-    <h2>1. Verified Profiles</h2>
-    <p>Every worker and farmer on Dinasari undergoes a mandatory verification process including Aadhaar authentication and background checks.</p>
-    
-    <h2>2. On-Site Safety</h2>
-    <p>We encourage all users to follow best practices for agricultural safety. Farmers are expected to provide a safe working environment for all contracted help.</p>
-    
-    <h2>3. Dispute Resolution</h2>
-    <p>In case of any disagreement regarding work quality or payment, Dinasari provides a dedicated mediation service to ensure fair outcomes for both parties.</p>
-    
-    <h2>4. Zero Tolerance Policy</h2>
-    <p>Dinasari maintains a zero-tolerance policy for harassment, discrimination, or unsafe practices. Violators will be permanently banned from the platform.</p>
+  <LegalLayout title="Safety & Trust" lastUpdated={new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}>
+    <p>Safety is our top priority. We strive to provide a secure environment.</p>
+
+    <h2>1. Farm Work Safety Protocols</h2>
+    <ul>
+      <li><strong>Machinery:</strong> Operate heavy machinery only if trained. Keep safety guards in place.</li>
+      <li><strong>Chemicals:</strong> Wear protective gear when handling fertilizers/pesticides. Wash hands thoroughly.</li>
+      <li><strong>Hydration:</strong> Drink plenty of water and take breaks in shade during heat.</li>
+      <li><strong>First Aid:</strong> Keep a first aid kit ready on the farm.</li>
+    </ul>
+
+    <h2>2. Platform Trust & Verification</h2>
+    <ul>
+      <li><strong>Verification:</strong> Phone OTP verification on registration.</li>
+      <li><strong>Reviews:</strong> Two-way rating system keeps the community honest.</li>
+      <li><strong>Underage Labor:</strong> Strict prohibition of child labor. All users must be 18+.</li>
+    </ul>
+
+    <h2>3. Harassment & Abuse Policy</h2>
+    <ul>
+      <li><strong>Zero Tolerance:</strong> Report harassment or abuse immediately.</li>
+      <li><strong>Dispute Resolution:</strong> Raise a dispute ticket in the app.</li>
+      <li><strong>Emergency:</strong> In case of immediate threat, call 112.</li>
+    </ul>
+  </LegalLayout>
+);
+
+export const CookiePage = () => (
+  <LegalLayout title="Cookie & Local Storage Policy" lastUpdated="July 2026">
+    <h2>1. Local Storage & Async Storage</h2>
+    <p>Dinasari uses HTML5 LocalStorage, React Native AsyncStorage, and Expo SecureStore to ensure offline capabilities.</p>
+
+    <h2>2. How We Use Storage</h2>
+    <ul>
+      <li><strong>Authentication:</strong> We store your JWT session token securely using device keystores (Expo SecureStore) so you don't need to re-verify OTP on every app launch.</li>
+      <li><strong>Preferences:</strong> We store your language code and active role preference.</li>
+      <li><strong>Cache:</strong> We store lists offline to save your mobile data package.</li>
+    </ul>
+
+    <h2>3. Management</h2>
+    <p>To clear your authentication token and reset preferences, simply tap the Logout button on the Profile screen.</p>
   </LegalLayout>
 );

@@ -9,31 +9,82 @@ const HelpPage = () => {
   const faqs = [
     {
       category: 'farmer',
-      q: "How do I book a worker for my farm?",
-      a: "Open the Dinasari app, go to the 'Workers' section, select your farm location, and choose from verified workers available in your area."
+      q: "How to post a job?",
+      a: "Select Farmer Mode, choose crop/work type, set workers needed, wage rate, and date, then tap Find Workers."
+    },
+    {
+      category: 'farmer',
+      q: "How does attendance work?",
+      a: "Open active job, tap Check-in/out to show QR code, have workers scan it (or scan Leader's group QR)."
+    },
+    {
+      category: 'farmer',
+      q: "How do I settle payments?",
+      a: "Settle payment directly via Cash or UPI and rate the workers."
     },
     {
       category: 'worker',
-      q: "When do I get paid for my work?",
-      a: "Payments are processed instantly after the farmer confirms completion. The money is deposited directly into your Dinasari digital wallet."
+      q: "How do I find jobs?",
+      a: "Set status to Online, review matching notifications, and tap Accept."
     },
     {
-      category: 'machinery',
-      q: "Can I list my own tractor for rent?",
-      a: "Yes! Go to the 'List Machinery' section, upload your tractor details and photos, and set your daily rental price."
+      category: 'worker',
+      q: "How do I check-in/out?",
+      a: "Scan the Farmer's QR code when arriving and leaving."
+    },
+    {
+      category: 'worker',
+      q: "Where can I see my earnings?",
+      a: "View history in the Earnings tab."
+    },
+    {
+      category: 'leader',
+      q: "How do I manage a group?",
+      a: "Create a group in the Group tab, add workers by phone number, and accept group job offers."
+    },
+    {
+      category: 'leader',
+      q: "How does group attendance work?",
+      a: "Show Group QR to the Farmer for simultaneous scanning."
     },
     {
       category: 'general',
-      q: "Is my data secure on Dinasari?",
-      a: "We use bank-grade encryption to protect your personal information and transaction history. Your privacy is our top priority."
+      q: "Is Dinasari free to use?",
+      a: "Yes, Dinasari is currently free to download and use."
+    },
+    {
+      category: 'general',
+      q: "Can I switch roles in the app?",
+      a: "Yes, go to Profile, slide the role toggle at the bottom, and switch."
+    },
+    {
+      category: 'general',
+      q: "What languages are supported?",
+      a: "English, Hindi (हिन्दी), and Telugu (తెలుగు) are supported."
+    },
+    {
+      category: 'farmer',
+      q: "What if a worker doesn't show up?",
+      a: "You can cancel the booking in the app and select 'Worker did not show up' to reopen the slots."
+    },
+    {
+      category: 'worker',
+      q: "What if the Farmer refuses to pay?",
+      a: "Raise a dispute immediately in the job details page. Dinasari takes wage withholding seriously and will suspend violating accounts."
+    },
+    {
+      category: 'worker',
+      q: "Camera not working for QR scan?",
+      a: "Check if camera permissions are granted. The Farmer can also check you in manually via your ID."
     }
   ];
 
   const categories = [
     { id: 'all', name: 'All Topics', icon: <Globe size={18} /> },
+    { id: 'general', name: 'General FAQs', icon: <MessageCircle size={18} /> },
     { id: 'farmer', name: 'For Farmers', icon: <Users size={18} /> },
     { id: 'worker', name: 'For Workers', icon: <Zap size={18} /> },
-    { id: 'machinery', name: 'Machinery', icon: <Shield size={18} /> }
+    { id: 'leader', name: 'Group Leaders', icon: <Shield size={18} /> }
   ];
 
   return (
@@ -51,6 +102,9 @@ const HelpPage = () => {
               HELP CENTER
             </div>
             <h1>How can we <span className="text-gradient">help you?</span></h1>
+            <p style={{ fontSize: '18px', color: 'var(--text-muted)', marginBottom: '40px' }}>
+              Welcome to Dinasari. We are here to support you at every stage of your farming and agricultural journey.
+            </p>
             
             <div className="search-bar-container">
               <Search className="search-icon" size={20} />
@@ -119,7 +173,7 @@ const HelpPage = () => {
             <div className="support-card glass">
               <Phone size={32} color="var(--primary)" />
               <h4>Phone Support</h4>
-              <p>+91 1800-DINASARI</p>
+              <p>+91 9014369419</p>
             </div>
             <div className="support-card glass">
               <MessageCircle size={32} color="var(--primary)" />

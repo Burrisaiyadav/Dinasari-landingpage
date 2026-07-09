@@ -86,7 +86,7 @@ const Footer = () => {
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <li><Link to="/terms" className="footer-link">Terms of Service</Link></li>
               <li><Link to="/privacy" className="footer-link">Privacy Policy</Link></li>
-              <li><Link to="/privacy" className="footer-link">Cookie Policy</Link></li>
+              <li><Link to="/cookies" className="footer-link">Cookie Policy</Link></li>
               <li><Link to="/terms" className="footer-link">User Agreement</Link></li>
             </ul>
           </div>
@@ -162,8 +162,7 @@ const Footer = () => {
               <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', marginBottom: '12px' }}>
                 <Phone size={18} color="var(--primary-light)" style={{ marginTop: '2px' }} />
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                  <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)' }}>9441082056</span>
-                  <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)' }}>6301910135</span>
+                  <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)' }}>9014369419</span>
                 </div>
               </div>
               <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
