@@ -74,12 +74,13 @@ const InvestorPage = () => {
             </p>
 
             <div className="hero-ctas">
-              <button 
+              <a 
                 className="btn btn-primary btn-lg"
-                onClick={() => handleOpenModal('deck')}
+                href="https://1drv.ms/p/c/4e3c54ce99dcc8b1/IQCCyojDg-5IQqhaXNhE70Z2AednVPDaJaL7SBp54lQa0AM?download=1"
+                download="Dinasari_Pitch_Deck.pptx"
               >
-                Request Pitch Deck <ArrowRight size={20} />
-              </button>
+                Download Pitch Deck <ArrowRight size={20} />
+              </a>
               <button 
                 className="btn btn-outline btn-lg"
                 onClick={() => handleOpenModal('meeting')}
@@ -202,7 +203,7 @@ const InvestorPage = () => {
             <h2 style={{ color: 'var(--text-main)' }}>Ready to Transform <br />Rural Commerce?</h2>
             <p style={{ color: 'var(--text-muted)' }}>Join us in empowering the next billion users. Let's discuss our vision and roadmap.</p>
             <div className="hero-ctas" style={{ marginTop: '40px' }}>
-              <button className="btn btn-primary btn-lg" onClick={() => handleOpenModal('deck')}>Request Investor Brief</button>
+              <a className="btn btn-primary btn-lg" href="https://1drv.ms/p/c/4e3c54ce99dcc8b1/IQCCyojDg-5IQqhaXNhE70Z2AednVPDaJaL7SBp54lQa0AM?download=1" download="Dinasari_Pitch_Deck.pptx">Download Pitch Deck</a>
               <button className="btn btn-outline btn-lg" onClick={() => handleOpenModal('meeting')}>Book a Strategy Call</button>
             </div>
           </div>

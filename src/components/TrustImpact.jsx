@@ -9,14 +9,14 @@ const TrustImpact = () => {
       role: "Rice Farmer, Punjab",
       text: "Before Dinasari, I had to travel 20km just to find workers. Now they are at my farm in 30 minutes. It saved my harvest this year.",
       rating: 5,
-      avatar: "https://i.pravatar.cc/150?u=rajesh"
+      avatar: "https://i.pravatar.cc/150?u=sunita"
     },
     {
       name: "Sunita Devi",
       role: "Agricultural Worker, Bihar",
       text: "I used to wait for weeks for work. Now I get job alerts on my phone every day. The payments are direct and on time.",
       rating: 5,
-      avatar: "https://i.pravatar.cc/150?u=sunita"
+      avatar: "https://i.pravatar.cc/150?u=rajesh"
     }
   ];
 

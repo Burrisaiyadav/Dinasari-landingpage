@@ -92,9 +92,6 @@ const MachinerySection = () => {
                   <span style={{ fontSize: '24px', fontWeight: '900', color: 'var(--text-main)' }}>{m.price}</span>
                   <span style={{ fontSize: '14px', color: 'var(--text-muted)', fontWeight: '600' }}> /hour</span>
                 </div>
-                <button className="book-btn" style={{ '--accent': m.color }}>
-                  Book Now <ChevronRight size={16} />
-                </button>
               </div>
             </motion.div>
           ))}
