@@ -182,3 +182,23 @@ export const CookiePage = () => (
     <p>To clear your authentication token and reset preferences, simply tap the Logout button on the Profile screen.</p>
   </LegalLayout>
 );
+
+export const UserAgreementPage = () => (
+  <LegalLayout title="User Agreement & Code of Conduct" lastUpdated="July 2026">
+    <h2>1. Core Ethics</h2>
+    <ul>
+      <li><strong>Non-Discrimination:</strong> Equal opportunities. Zero tolerance for caste, gender, or religious discrimination.</li>
+      <li><strong>Child Labor:</strong> No hiring of children under 14. Workers must be 18+ to register.</li>
+      <li><strong>Safety first:</strong> Farmers should provide clean drinking water and a safe environment.</li>
+    </ul>
+
+    <h2>2. Farmer Duties</h2>
+    <p>Post accurate rates and details. Pay workers immediately upon work completion.</p>
+
+    <h2>3. Worker Duties</h2>
+    <p>Arrive on time, complete tasks diligently, and scan QR for check-in and check-out.</p>
+
+    <h2>4. Group Leader Duties</h2>
+    <p>Register real members with their consent. Manage QR scanning fairly. Distribute wages to members fairly.</p>
+  </LegalLayout>
+);

@@ -9,7 +9,7 @@ import CareersPage from './pages/CareersPage'
 import InvestorPage from './pages/InvestorPage'
 import ImpactPage from './pages/ImpactPage'
 import HelpPage from './pages/HelpPage'
-import { TermsPage, PrivacyPage, SafetyPage, CookiePage } from './pages/LegalPages'
+import { TermsPage, PrivacyPage, SafetyPage, CookiePage, UserAgreementPage } from './pages/LegalPages'
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/safety" element={<SafetyPage />} />
             <Route path="/cookies" element={<CookiePage />} />
+            <Route path="/agreement" element={<UserAgreementPage />} />
           </Routes>
         </main>
         <Footer />
