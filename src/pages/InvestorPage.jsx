@@ -4,6 +4,7 @@ import { TrendingUp, Users, PieChart, Activity, Shield, Rocket, ArrowRight, Doll
 import { db } from '../services/mockDb';
 import founderImg from '../assets/team/founder.jpg';
 import cofounderImg from '../assets/team/cofounder.jpg';
+import SEO from '../components/SEO';
 
 const InvestorPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -54,6 +55,10 @@ const InvestorPage = () => {
 
   return (
     <div className="investor-page">
+      <SEO 
+        title="Investors | Dinasari Series A Investment" 
+        description="Partner with Dinasari. Explore Indian agricultural services market size, our GMV growth, and opportunities to fund digital rural connectivity infrastructure." 
+      />
       {/* Slide 1: Hero Pitch */}
       <section className="pitch-hero">
         <div className="container" style={{ maxWidth: '1000px' }}>

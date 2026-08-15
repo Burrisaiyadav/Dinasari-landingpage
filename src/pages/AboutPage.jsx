@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Target, Eye, Users, Award, ShieldCheck, Heart } from 'lucide-react';
 import founderImg from '../assets/team/founder.jpg';
 import cofounderImg from '../assets/team/cofounder.jpg';
+import SEO from '../components/SEO';
 
 const AboutPage = () => {
   const team = [
@@ -28,6 +29,10 @@ const AboutPage = () => {
 
   return (
     <div className="about-page">
+      <SEO 
+        title="About Us | Dinasari Agritech" 
+        description="Learn about Dinasari Agritech's mission, vision, values, and the leadership team driving rural empowerment and digitizing agricultural services." 
+      />
       {/* Hero Section */}
       <section className="about-hero">
         <div className="container">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, ChevronDown, MessageCircle, Phone, Mail, Users, Shield, Zap, Globe } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const HelpPage = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -89,6 +90,10 @@ const HelpPage = () => {
 
   return (
     <div className="help-page">
+      <SEO 
+        title="Help Center | Dinasari Support" 
+        description="Find helpful user guides, FAQs, and support resources for Farmers, Workers, and Group Leaders using the Dinasari App." 
+      />
       {/* Hero Section */}
       <section className="help-hero">
         <div className="container" style={{ maxWidth: '800px' }}>

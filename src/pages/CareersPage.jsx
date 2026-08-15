@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Briefcase, MapPin, Clock, ArrowRight, Zap, Globe, Users, Heart, X, Send, Paperclip } from 'lucide-react';
 import { db } from '../services/mockDb';
+import SEO from '../components/SEO';
 
 const CareersPage = () => {
   const [selectedJob, setSelectedJob] = useState(null);
@@ -70,6 +71,10 @@ const CareersPage = () => {
 
   return (
     <div className="careers-page">
+      <SEO 
+        title="Careers | Join the Dinasari Team" 
+        description="Explore career opportunities at Dinasari. Work on solving hard, impactful agricultural operations, design, and engineering problems in rural India." 
+      />
       {/* Hero Section */}
       <section className="careers-hero">
         <div className="container" style={{ maxWidth: '900px' }}>

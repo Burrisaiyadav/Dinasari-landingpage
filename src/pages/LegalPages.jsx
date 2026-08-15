@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
-const LegalLayout = ({ title, lastUpdated, children }) => {
+const LegalLayout = ({ title, description, lastUpdated, children }) => {
   return (
     <div className="legal-page">
+      <SEO title={`${title} | Dinasari`} description={description} />
       <section className="legal-hero">
         <div className="container" style={{ maxWidth: '800px' }}>
           <motion.div 
@@ -79,7 +81,11 @@ const LegalLayout = ({ title, lastUpdated, children }) => {
 };
 
 export const TermsPage = () => (
-  <LegalLayout title="Terms of Service" lastUpdated="July 2026">
+  <LegalLayout 
+    title="Terms of Service" 
+    description="Read the Terms of Service governing the use of the Dinasari platform and agricultural workforce marketplace."
+    lastUpdated="July 2026"
+  >
     <h2>1. Governing Law & Compliance</h2>
     <p>These terms are governed by the laws of India, including the Indian Contract Act, 1872 and the Information Technology Act, 2000. Exclusive jurisdiction is Bengaluru, India.</p>
 
@@ -108,7 +114,11 @@ export const TermsPage = () => (
 );
 
 export const PrivacyPage = () => (
-  <LegalLayout title="Privacy Policy (DPDP Act 2023 Compliant)" lastUpdated="July 2026">
+  <LegalLayout 
+    title="Privacy Policy" 
+    description="Read Dinasari's DPDP Act 2023 compliant Privacy Policy. Learn how we collect, process, and protect your digital personal data."
+    lastUpdated="July 2026"
+  >
     <h2>1. Consent & Rights (Data Principal)</h2>
     <p>By using Dinasari, you give your explicit consent to process your personal data.</p>
     <p>Your rights under India's Digital Personal Data Protection (DPDP) Act, 2023:</p>
@@ -139,7 +149,11 @@ export const PrivacyPage = () => (
 );
 
 export const SafetyPage = () => (
-  <LegalLayout title="Safety & Trust" lastUpdated={new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}>
+  <LegalLayout 
+    title="Safety & Trust" 
+    description="Learn about Dinasari's farm work safety protocols, zero-tolerance abuse policy, and platform verification systems."
+    lastUpdated={new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+  >
     <p>Safety is our top priority. We strive to provide a secure environment.</p>
 
     <h2>1. Farm Work Safety Protocols</h2>
@@ -167,7 +181,11 @@ export const SafetyPage = () => (
 );
 
 export const CookiePage = () => (
-  <LegalLayout title="Cookie & Local Storage Policy" lastUpdated="July 2026">
+  <LegalLayout 
+    title="Cookie & Local Storage Policy" 
+    description="Understand how Dinasari utilizes cookies and device local storage for secure session authentication and offline caching."
+    lastUpdated="July 2026"
+  >
     <h2>1. Local Storage & Async Storage</h2>
     <p>Dinasari uses HTML5 LocalStorage, React Native AsyncStorage, and Expo SecureStore to ensure offline capabilities.</p>
 
@@ -184,7 +202,11 @@ export const CookiePage = () => (
 );
 
 export const UserAgreementPage = () => (
-  <LegalLayout title="User Agreement & Code of Conduct" lastUpdated="July 2026">
+  <LegalLayout 
+    title="User Agreement & Code of Conduct" 
+    description="Review the code of conduct, ethics, and mutual responsibilities for farmers, workers, and group leaders in the Dinasari community."
+    lastUpdated="July 2026"
+  >
     <h2>1. Core Ethics</h2>
     <ul>
       <li><strong>Non-Discrimination:</strong> Equal opportunities. Zero tolerance for caste, gender, or religious discrimination.</li>

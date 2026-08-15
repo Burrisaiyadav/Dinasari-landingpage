@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Globe, Users, TrendingUp, Shield, Zap, ArrowRight, BarChart3, Leaf } from 'lucide-react';
 import heroImg from '../assets/impact/hero.png';
+import SEO from '../components/SEO';
 
 const ImpactPage = () => {
   const metrics = [
@@ -31,6 +32,10 @@ const ImpactPage = () => {
 
   return (
     <div className="impact-page">
+      <SEO 
+        title="Impact Report | Dinasari Agritech" 
+        description="Read the Dinasari 2024 Social Impact Report. Tracking metric increases in rural income, digital connectivity, carbon offset, and social empowerment." 
+      />
       {/* Hero Section */}
       <section className="impact-hero">
         <div className="container" style={{ maxWidth: '1000px' }}>
