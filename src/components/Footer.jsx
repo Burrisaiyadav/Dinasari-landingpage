@@ -33,7 +33,7 @@ const Footer = () => {
   };
 
   return (
-    <footer style={{ 
+    <footer id="footer" style={{ 
       background: '#0a2a16', 
       paddingTop: '100px', 
       paddingBottom: '40px', 
