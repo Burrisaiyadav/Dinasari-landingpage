@@ -37,9 +37,7 @@ function App() {
         <style dangerouslySetInnerHTML={{ __html: `
           .app {
             overflow-x: hidden;
-            padding-top: 80px; /* Space for fixed header */
           }
-          /* Smooth scrolling */
           html {
             scroll-behavior: smooth;
           }
