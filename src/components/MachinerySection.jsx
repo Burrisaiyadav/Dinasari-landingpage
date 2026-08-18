@@ -11,7 +11,6 @@ const MachinerySection = () => {
     {
       name: "Smart Tractor",
       desc: "GPS-enabled heavy duty tractors with specialized attachments for multi-crop harvesting.",
-      price: "₹800/hr",
       icon: <Tractor size={32} />,
       tag: "Heavy Duty",
       color: "#1F8A3D"
@@ -19,7 +18,6 @@ const MachinerySection = () => {
     {
       name: "Precision Seeder",
       desc: "automated seeding machinery ensuring perfect depth and spacing for maximum yield.",
-      price: "₹400/hr",
       icon: <Drill size={32} />,
       tag: "Precision",
       color: "#3B82F6"
@@ -27,7 +25,6 @@ const MachinerySection = () => {
     {
       name: "Solar Sprayer",
       desc: "Eco-friendly autonomous spraying units for uniform nutrient and pesticide distribution.",
-      price: "₹250/hr",
       icon: <Zap size={32} />,
       tag: "Eco-Friendly",
       color: "#F59E0B"
@@ -64,7 +61,7 @@ const MachinerySection = () => {
             viewport={{ once: true }}
             style={{ fontSize: '18px', color: 'var(--text-muted)', maxWidth: '400px', marginBottom: '10px' }}
           >
-            Access the latest agricultural technology without the heavy investment. Pay only for what you use.
+            Access the latest agricultural technology without the heavy investment.
           </motion.p>
         </div>
 
@@ -88,10 +85,9 @@ const MachinerySection = () => {
               <p style={{ fontSize: '16px', color: 'var(--text-muted)', marginBottom: '32px', lineHeight: '1.6' }}>{m.desc}</p>
               
               <div className="machine-footer">
-                <div className="price-tag">
-                  <span style={{ fontSize: '24px', fontWeight: '900', color: 'var(--text-main)' }}>{m.price}</span>
-                  <span style={{ fontSize: '14px', color: 'var(--text-muted)', fontWeight: '600' }}> /hour</span>
-                </div>
+                <button className="book-btn" style={{ '--accent': m.color }}>
+                  Book Now <ChevronRight size={16} />
+                </button>
               </div>
             </motion.div>
           ))}
