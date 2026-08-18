@@ -21,7 +21,7 @@ const TrustImpact = () => {
   ];
 
   return (
-    <section id="trust-impact" style={{ padding: '160px 0', background: '#ffffff', overflow: 'hidden' }}>
+    <section id="trust-impact" style={{ padding: '100px 0', background: '#ffffff', overflow: 'hidden' }}>
       <div className="container">
         <div className="trust-grid">
           <motion.div 

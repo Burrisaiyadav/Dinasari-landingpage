@@ -35,7 +35,7 @@ const MachinerySection = () => {
   ];
 
   return (
-    <section id="machinery" style={{ background: '#ffffff', padding: '160px 0' }}>
+    <section id="machinery" style={{ background: '#ffffff', padding: '100px 0' }}>
       <div className="container">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '100px' }} className="machinery-header">
           <div style={{ maxWidth: '600px' }}>

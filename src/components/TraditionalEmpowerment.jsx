@@ -4,7 +4,7 @@ import { Quote, ArrowRight } from 'lucide-react';
 
 const TraditionalEmpowerment = () => {
   return (
-    <section id="empowerment" style={{ padding: '160px 0', background: '#0a2a16', overflow: 'hidden', position: 'relative' }}>
+    <section id="empowerment" style={{ padding: '100px 0', background: '#0a2a16', overflow: 'hidden', position: 'relative' }}>
       {/* Decorative background elements */}
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.1, backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
       <div style={{ position: 'absolute', bottom: '-10%', left: '-5%', width: '400px', height: '400px', background: 'var(--primary)', filter: 'blur(150px)', borderRadius: '50%', opacity: 0.1 }} />

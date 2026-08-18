@@ -6,6 +6,7 @@ import HowItWorks from '../components/HowItWorks'
 import Features from '../components/Features'
 import TraditionalEmpowerment from '../components/TraditionalEmpowerment'
 import MachinerySection from '../components/MachinerySection'
+import StatisticsSection from '../components/StatisticsSection'
 import InvestorSection from '../components/InvestorSection'
 import TrustImpact from '../components/TrustImpact'
 import DownloadCTA from '../components/DownloadCTA'
@@ -23,6 +24,7 @@ function HomePage() {
       <Features />
       <TraditionalEmpowerment />
       <MachinerySection />
+      <StatisticsSection />
       <TrustImpact />
       <InvestorSection />
       <DownloadCTA />

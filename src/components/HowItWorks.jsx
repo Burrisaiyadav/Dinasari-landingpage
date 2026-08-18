@@ -28,7 +28,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" style={{ background: '#f8faf9', padding: '160px 0', overflow: 'hidden' }}>
+    <section id="how-it-works" style={{ background: '#f8faf9', padding: '100px 0', overflow: 'hidden' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '120px' }}>
           <motion.div 

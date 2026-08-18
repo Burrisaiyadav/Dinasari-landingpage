@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Zap, Globe, MessageSquare, CloudRain, Lock, ChevronRight } from 'lucide-react';
+import { Shield, Zap, Globe, MessageSquare, CloudRain, Lock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Features = () => {
@@ -43,7 +43,7 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" style={{ background: '#ffffff', padding: '140px 0' }}>
+    <section id="features" style={{ background: '#ffffff', padding: '100px 0' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '100px' }}>
           <motion.div 
@@ -165,4 +165,3 @@ const Features = () => {
 };
 
 export default Features;
-

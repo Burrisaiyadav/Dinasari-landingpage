@@ -97,7 +97,110 @@ const InvestorPage = () => {
         </div>
       </section>
 
+      {/* Slide 1.5: Digital Backbone — stats + roadmap from home */}
+      <section style={{ background: '#0a0b0a', padding: '120px 0', color: 'white', overflow: 'hidden' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '80px', alignItems: 'center' }}>
+            {/* Left */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: '8px',
+                color: 'var(--yellow)', fontWeight: '700', fontSize: '14px',
+                marginBottom: '28px', letterSpacing: '1px'
+              }}>
+                <TrendingUp size={18} /> INSTITUTIONAL OPPORTUNITY
+              </div>
+
+              <h2 style={{ fontSize: 'clamp(2.4rem,5vw,3.8rem)', fontWeight: '900', marginBottom: '28px', lineHeight: '1.1', letterSpacing: '-1.5px' }}>
+                Building the <span style={{ color: 'var(--primary)' }}>Digital Backbone</span><br />
+                of Rural Economy.
+              </h2>
+
+              <p style={{ fontSize: '18px', opacity: 0.7, marginBottom: '48px', lineHeight: '1.65', maxWidth: '540px' }}>
+                Dinasari scales productivity in markets that have been offline for centuries. We are creating a new asset class by digitizing rural labour and machinery.
+              </p>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '36px' }}>
+                {[
+                  { label: "Market Size",  value: "$350B+", sub: "Addressable Market" },
+                  { label: "Rural Users",  value: "800M+",  sub: "Target Audience"    },
+                  { label: "Expansion",    value: "15+",    sub: "States by 2027"     },
+                  { label: "Livelihoods", value: "1M+",    sub: "Impact Target"      },
+                ].map((s, idx) => (
+                  <div key={idx}>
+                    <div style={{ fontSize: '2.4rem', fontWeight: '900', color: 'white', marginBottom: '6px', lineHeight: 1 }}>{s.value}</div>
+                    <div style={{ fontWeight: '700', fontSize: '16px', marginBottom: '3px' }}>{s.label}</div>
+                    <div style={{ fontSize: '14px', opacity: 0.5 }}>{s.sub}</div>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="https://1drv.ms/p/c/4e3c54ce99dcc8b1/IQCCyojDg-5IQqhaXNhE70Z2AednVPDaJaL7SBp54lQa0AM?download=1"
+                download="Dinasari_Pitch_Deck.pptx"
+                className="btn btn-primary"
+                style={{ marginTop: '52px', padding: '16px 40px', fontSize: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              >
+                Request Investor Access <ArrowRight size={20} />
+              </a>
+            </motion.div>
+
+            {/* Right — Roadmap card */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
+              style={{
+                background: 'rgba(255,255,255,0.03)',
+                borderRadius: '40px',
+                padding: '52px 44px',
+                border: '1px solid rgba(255,255,255,0.08)',
+              }}
+            >
+              <h4 style={{ fontSize: '24px', fontWeight: '800', marginBottom: '36px' }}>Growth Roadmap</h4>
+              <div style={{ position: 'relative' }}>
+                <div style={{ position: 'absolute', top: 0, left: '7px', width: '2px', height: '100%', background: 'rgba(255,255,255,0.1)' }} />
+                {[
+                  { year: "2026", task: "Platform Launch & Seed",        status: "Completed"   },
+                  { year: "2027", task: "Scale to 500+ Villages",         status: "In Progress" },
+                  { year: "2028", task: "Series A & Pan-India Scale",      status: "Upcoming"    },
+                  { year: "2029", task: "Global Expansion & Fintech",      status: "Vision"      },
+                ].map((item, idx) => (
+                  <div key={idx} style={{ display: 'flex', gap: '28px', marginBottom: '36px', position: 'relative' }}>
+                    <div style={{
+                      width: '16px', height: '16px', borderRadius: '50%', flexShrink: 0,
+                      background: item.status === 'Completed' ? 'var(--primary)' : 'rgba(255,255,255,0.18)',
+                      marginTop: '6px', zIndex: 1,
+                      boxShadow: item.status === 'Completed' ? '0 0 14px var(--primary)' : 'none'
+                    }} />
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '3px' }}>
+                        <span style={{ fontWeight: '900', color: 'var(--primary)', fontSize: '13px' }}>{item.year}</span>
+                        <span style={{ fontSize: '11px', opacity: 0.45, textTransform: 'uppercase', fontWeight: '700' }}>{item.status}</span>
+                      </div>
+                      <div style={{ fontSize: '18px', fontWeight: '700' }}>{item.task}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        <style dangerouslySetInnerHTML={{ __html: `
+          @media (max-width: 900px) {
+            .backbone-grid { grid-template-columns: 1fr !important; gap: 60px !important; }
+          }
+        `}} />
+      </section>
+
       {/* Traction Section - Matching Main Site Cards */}
+
       <section className="traction-section" style={{ background: 'var(--background)', padding: '140px 0' }}>
         <div className="container">
           <div className="section-header-centered">

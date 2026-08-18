@@ -18,7 +18,7 @@ const ProblemSolution = () => {
   ];
 
   return (
-    <section id="solutions" style={{ background: '#fcfdfc', padding: '160px 0', overflow: 'hidden' }}>
+    <section id="solutions" style={{ background: '#fcfdfc', padding: '100px 0', overflow: 'hidden' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '120px' }}>
           <motion.div 
