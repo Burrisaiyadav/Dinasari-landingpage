@@ -37,26 +37,16 @@ const CountUp = ({ target, suffix = '' }) => {
 };
 
 const stats = [
-  { label: 'Active Farmers',  target: 500,  suffix: '+' },
-  { label: 'Jobs Completed',  target: 1000, suffix: '+' },
-  { label: 'Villages Reached', target: 10,  suffix: '+' },
-  { label: 'States Covered',  target: 1,      suffix: '' },
+  { label: 'Active Farmers',  target: 50000,  suffix: '+' },
+  { label: 'Jobs Completed',  target: 200000, suffix: '+' },
+  { label: 'Villages Reached', target: 1200,  suffix: '+' },
+  { label: 'States Covered',  target: 8,      suffix: '+' },
 ];
 
 /* ── Hero ─────────────────────────────────────────────── */
 const Hero = () => {
   const videoRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    const handleToggleMute = (e) => {
-      if (videoRef.current) {
-        videoRef.current.muted = e.detail.muted;
-      }
-    };
-    window.addEventListener('toggle-mute', handleToggleMute);
-    return () => window.removeEventListener('toggle-mute', handleToggleMute);
-  }, []);
 
   const togglePlayPause = () => {
     if (!videoRef.current) return;
@@ -103,10 +93,20 @@ const Hero = () => {
             zIndex: 0,
           }}
         >
-          <source src="/web%20video.mp4" type="video/mp4" />
+          <source src="/farm-video.mp4" type="video/mp4" />
         </video>
 
-
+        {/* Fallback static image */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 0,
+            backgroundImage: 'url(/tractor-bg-v2.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
 
         {/* Gradient overlays */}
         <div

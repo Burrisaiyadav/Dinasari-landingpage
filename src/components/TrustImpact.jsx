@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight, Leaf } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Star, Leaf } from 'lucide-react';
 
 const TrustImpact = () => {
-  const [active, setActive] = useState(0);
-
   const testimonials = [
     {
       name: "Rajesh Kumar",
@@ -35,13 +33,12 @@ const TrustImpact = () => {
     }
   ];
 
-  const prev = () => setActive(i => (i - 1 + testimonials.length) % testimonials.length);
-  const next = () => setActive(i => (i + 1) % testimonials.length);
+  // We'll duplicate the array a few times to ensure it fills ultra-wide screens
+  const displayItems = [...testimonials, ...testimonials, ...testimonials, ...testimonials];
 
   return (
     <section id="trust-impact" className="trust-section">
       <div className="container">
-
         {/* ── Section Header ── */}
         <motion.div
           className="trust-section-header"
@@ -60,100 +57,57 @@ const TrustImpact = () => {
             Thousands of farmers, workers, and machinery owners across rural India trust Dinasari every day.
           </p>
         </motion.div>
+      </div>
 
-        {/* ── Testimonial Spotlight ── */}
-        <div className="trust-spotlight-wrap">
-
-          {/* Big decorative quote */}
-          <div className="trust-deco-quote" aria-hidden="true">"</div>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -24 }}
-              transition={{ duration: 0.45, ease: 'easeOut' }}
-              className="trust-spotlight-card"
-            >
-              {/* Stars */}
+      {/* ── Marquee Scrolling Testimonials ── */}
+      <div className="marquee-container">
+        {/* First track */}
+        <div className="marquee-content">
+          {displayItems.map((item, index) => (
+            <div key={`a-${index}`} className="testimonial-box">
               <div className="trust-stars">
-                {[...Array(testimonials[active].rating)].map((_, i) => (
-                  <Star key={i} size={18} fill="var(--yellow)" color="var(--yellow)" />
+                {[...Array(item.rating)].map((_, i) => (
+                  <Star key={i} size={16} fill="var(--yellow)" color="var(--yellow)" />
                 ))}
               </div>
-
-              {/* Quote text */}
-              <p className="trust-quote-text">
-                "{testimonials[active].text}"
-              </p>
-
-              {/* Author chip */}
+              <p className="trust-quote-text">"{item.text}"</p>
               <div className="trust-author-row">
-                <img
-                  src={testimonials[active].avatar}
-                  alt={testimonials[active].name}
-                  className="trust-avatar"
-                />
+                <img src={item.avatar} alt={item.name} className="trust-avatar" />
                 <div className="trust-author-info">
-                  <span className="trust-author-name">{testimonials[active].name}</span>
+                  <span className="trust-author-name">{item.name}</span>
                   <span className="trust-author-role">
-                    {testimonials[active].role} · {testimonials[active].location}
+                    {item.role} · {item.location}
                   </span>
                 </div>
-                <span className="trust-user-tag">{testimonials[active].tag}</span>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Navigation */}
-          <div className="trust-nav">
-            <button onClick={prev} className="trust-nav-btn" aria-label="Previous testimonial">
-              <ChevronLeft size={20} />
-            </button>
-
-            {/* Dots */}
-            <div className="trust-dots">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActive(i)}
-                  className={`trust-dot ${i === active ? 'trust-dot-active' : ''}`}
-                  aria-label={`Go to testimonial ${i + 1}`}
-                />
-              ))}
-            </div>
-
-            <button onClick={next} className="trust-nav-btn" aria-label="Next testimonial">
-              <ChevronRight size={20} />
-            </button>
-          </div>
-        </div>
-
-        {/* ── Impact Pillars — text only, no numbers ── */}
-        <motion.div
-          className="trust-pillars"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-        >
-          {[
-            { label: 'Villages Reached',    desc: 'Spreading across districts of Andhra Pradesh' },
-            { label: 'Jobs Connected',       desc: 'Seasonal and daily agricultural placements'   },
-            { label: 'Payments Processed',   desc: 'Instant digital wages with zero middlemen'    },
-            { label: 'Machinery Bookings',   desc: 'On-demand access to farm equipment statewide' },
-          ].map((p, i) => (
-            <div key={i} className="trust-pillar">
-              <div className="trust-pillar-dot" />
-              <div>
-                <div className="trust-pillar-label">{p.label}</div>
-                <div className="trust-pillar-desc">{p.desc}</div>
+                <span className="trust-user-tag">{item.tag}</span>
               </div>
             </div>
           ))}
-        </motion.div>
-
+        </div>
+        
+        {/* Second track for seamless loop */}
+        <div className="marquee-content">
+          {displayItems.map((item, index) => (
+            <div key={`b-${index}`} className="testimonial-box">
+              <div className="trust-stars">
+                {[...Array(item.rating)].map((_, i) => (
+                  <Star key={i} size={16} fill="var(--yellow)" color="var(--yellow)" />
+                ))}
+              </div>
+              <p className="trust-quote-text">"{item.text}"</p>
+              <div className="trust-author-row">
+                <img src={item.avatar} alt={item.name} className="trust-avatar" />
+                <div className="trust-author-info">
+                  <span className="trust-author-name">{item.name}</span>
+                  <span className="trust-author-role">
+                    {item.role} · {item.location}
+                  </span>
+                </div>
+                <span className="trust-user-tag">{item.tag}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
@@ -200,58 +154,80 @@ const TrustImpact = () => {
           line-height: 1.65;
         }
 
-        /* ─── Spotlight ─── */
-        .trust-spotlight-wrap {
+        /* ─── Marquee ─── */
+        .marquee-container {
+          display: flex;
+          width: 100%;
+          overflow: hidden;
           position: relative;
-          max-width: 760px;
-          margin: 0 auto 72px;
+          padding: 20px 0;
         }
-        .trust-deco-quote {
-          position: absolute;
-          top: -40px;
-          left: -24px;
-          font-size: 18rem;
-          font-weight: 900;
-          color: rgba(31,138,61,0.06);
-          line-height: 1;
-          pointer-events: none;
-          user-select: none;
-          z-index: 0;
+        
+        .marquee-content {
+          display: flex;
+          gap: 24px;
+          padding-right: 24px;
+          animation: marquee 40s linear infinite;
         }
-        .trust-spotlight-card {
+        
+        .marquee-container:hover .marquee-content {
+          animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+
+        /* ─── Box Shaped Card ─── */
+        .testimonial-box {
           background: #ffffff;
-          border-radius: 32px;
-          padding: 56px 60px;
-          border: 1px solid rgba(31,138,61,0.1);
-          box-shadow: 0 16px 48px rgba(31,138,61,0.07);
-          position: relative;
-          z-index: 1;
-          text-align: center;
+          border-radius: 12px;
+          padding: 32px;
+          width: 380px;
+          flex-shrink: 0;
+          border: 1px solid rgba(31,138,61,0.15);
+          box-shadow: 0 4px 20px rgba(31,138,61,0.06);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .testimonial-box:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 30px rgba(31,138,61,0.12);
+        }
+        
         .trust-stars {
           display: flex;
-          justify-content: center;
           gap: 4px;
-          margin-bottom: 28px;
+          margin-bottom: 20px;
         }
         .trust-quote-text {
-          font-size: clamp(1.1rem, 2vw, 1.45rem);
+          font-size: 15px;
           font-weight: 500;
           color: #1A1C19;
-          line-height: 1.65;
+          line-height: 1.6;
           font-style: italic;
-          margin-bottom: 36px;
+          margin-bottom: 28px;
+          flex-grow: 1;
+          white-space: normal;
         }
+        
         .trust-author-row {
           display: flex;
           align-items: center;
-          gap: 14px;
-          justify-content: center;
+          gap: 12px;
+          margin-top: auto;
         }
         .trust-avatar {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
+          width: 46px;
+          height: 46px;
+          border-radius: 10px; /* Boxier avatar */
           object-fit: cover;
           border: 2px solid rgba(31,138,61,0.15);
         }
@@ -260,13 +236,13 @@ const TrustImpact = () => {
         }
         .trust-author-name {
           display: block;
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 800;
           color: #1A1C19;
         }
         .trust-author-role {
           display: block;
-          font-size: 13px;
+          font-size: 12px;
           color: #5C6259;
           font-weight: 500;
         }
@@ -274,101 +250,20 @@ const TrustImpact = () => {
           margin-left: auto;
           background: rgba(31,138,61,0.1);
           color: #1F8A3D;
-          font-size: 11.5px;
+          font-size: 11px;
           font-weight: 800;
-          padding: 4px 12px;
-          border-radius: 50px;
+          padding: 4px 10px;
+          border-radius: 6px;
           text-transform: uppercase;
           letter-spacing: 0.5px;
         }
 
-        /* ─── Navigation ─── */
-        .trust-nav {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 20px;
-          margin-top: 32px;
-        }
-        .trust-nav-btn {
-          width: 42px; height: 42px;
-          border-radius: 50%;
-          background: #ffffff;
-          border: 1.5px solid rgba(31,138,61,0.2);
-          color: #1F8A3D;
-          display: flex; align-items: center; justify-content: center;
-          cursor: pointer;
-          transition: all 0.22s ease;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-        .trust-nav-btn:hover {
-          background: #1F8A3D;
-          color: #fff;
-          border-color: #1F8A3D;
-          transform: scale(1.08);
-        }
-        .trust-dots {
-          display: flex;
-          gap: 8px;
-          align-items: center;
-        }
-        .trust-dot {
-          width: 8px; height: 8px;
-          border-radius: 50%;
-          background: rgba(31,138,61,0.2);
-          border: none;
-          cursor: pointer;
-          transition: all 0.25s ease;
-          padding: 0;
-        }
-        .trust-dot-active {
-          background: #1F8A3D;
-          width: 24px;
-          border-radius: 4px;
-        }
-
-        /* ─── Pillars ─── */
-        .trust-pillars {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 24px;
-          padding-top: 48px;
-          border-top: 1px solid rgba(31,138,61,0.1);
-        }
-        .trust-pillar {
-          display: flex;
-          gap: 14px;
-          align-items: flex-start;
-        }
-        .trust-pillar-dot {
-          width: 10px; height: 10px;
-          border-radius: 50%;
-          background: #1F8A3D;
-          margin-top: 6px;
-          flex-shrink: 0;
-        }
-        .trust-pillar-label {
-          font-size: 14.5px;
-          font-weight: 800;
-          color: #1A1C19;
-          margin-bottom: 4px;
-        }
-        .trust-pillar-desc {
-          font-size: 13px;
-          color: #5C6259;
-          line-height: 1.55;
-        }
-
         /* ─── Responsive ─── */
-        @media (max-width: 900px) {
-          .trust-pillars { grid-template-columns: 1fr 1fr; }
-          .trust-spotlight-card { padding: 40px 32px; }
-          .trust-deco-quote { font-size: 10rem; }
-        }
         @media (max-width: 560px) {
-          .trust-pillars { grid-template-columns: 1fr; }
-          .trust-spotlight-card { padding: 32px 24px; }
-          .trust-section-header { margin-bottom: 40px; }
+          .testimonial-box {
+            width: 320px;
+            padding: 24px;
+          }
           .trust-user-tag { display: none; }
         }
       `}} />
