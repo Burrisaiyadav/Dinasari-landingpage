@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, Pause, Play } from 'lucide-react';
+import { ChevronRight, Pause, Play, ChevronDown } from 'lucide-react';
 
 /* ── Animated counter ─────────────────────────────────── */
 const CountUp = ({ target, suffix = '' }) => {
@@ -37,22 +37,92 @@ const CountUp = ({ target, suffix = '' }) => {
 };
 
 const stats = [
-  { label: 'Active Farmers',  target: 500,  suffix: '+' },
-  { label: 'Jobs Completed',  target: 1000, suffix: '+' },
-  { label: 'Villages Reached', target: 10,  suffix: '+' },
-  { label: 'States Covered',  target: 1,      suffix: '' },
+  { label: 'Active Farmers',   target: 500,  suffix: '+' },
+  { label: 'Jobs Completed',   target: 1000, suffix: '+' },
+  { label: 'Villages Reached', target: 10,   suffix: '+' },
+  { label: 'States Covered',   target: 1,    suffix: '' },
 ];
+
+/* ── Floating Particle ─────────────────────────────────── */
+const Particle = ({ style }) => (
+  <motion.div
+    className="hero-particle"
+    style={style}
+    animate={{
+      y: [0, -30, 0],
+      opacity: [0, 0.6, 0],
+      scale: [0.8, 1.2, 0.8],
+    }}
+    transition={{
+      duration: style['--dur'] || 4,
+      repeat: Infinity,
+      delay: style['--delay'] || 0,
+      ease: 'easeInOut',
+    }}
+  />
+);
+
+/* ── Typewriter tag ────────────────────────────────────── */
+const tags = ['Farmers', 'Workers', 'Communities', 'Rural India'];
+const Typewriter = () => {
+  const [index, setIndex] = useState(0);
+  const [displayed, setDisplayed] = useState('');
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const word = tags[index];
+    let timeout;
+    if (!deleting && displayed.length < word.length) {
+      timeout = setTimeout(() => setDisplayed(word.slice(0, displayed.length + 1)), 80);
+    } else if (!deleting && displayed.length === word.length) {
+      timeout = setTimeout(() => setDeleting(true), 1600);
+    } else if (deleting && displayed.length > 0) {
+      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 45);
+    } else if (deleting && displayed.length === 0) {
+      setDeleting(false);
+      setIndex((i) => (i + 1) % tags.length);
+    }
+    return () => clearTimeout(timeout);
+  }, [displayed, deleting, index]);
+
+  return (
+    <span className="typewriter-word">
+      {displayed}
+      <span className="typewriter-cursor">|</span>
+    </span>
+  );
+};
 
 /* ── Hero ─────────────────────────────────────────────── */
 const Hero = () => {
   const videoRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
 
+  /* Particle seed — generated once per mount */
+  const [particles] = useState(() =>
+    Array.from({ length: 18 }, (_, i) => ({
+      left:   `${5 + Math.random() * 90}%`,
+      top:    `${10 + Math.random() * 80}%`,
+      width:  `${3 + Math.random() * 5}px`,
+      height: `${3 + Math.random() * 5}px`,
+      '--delay': i * 0.35,
+      '--dur':   3 + Math.random() * 4,
+    }))
+  );
+
+  /* Stagger variants */
+  const containerVariants = {
+    hidden:  {},
+    visible: { transition: { staggerChildren: 0.18 } },
+  };
+  const itemVariants = {
+    hidden:   { opacity: 0, y: 28 },
+    visible:  { opacity: 1, y: 0, transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] } },
+  };
+
   useEffect(() => {
     const handleToggleMute = (e) => {
-      if (videoRef.current) {
-        videoRef.current.muted = e.detail.muted;
-      }
+      if (videoRef.current) videoRef.current.muted = e.detail.muted;
     };
     window.addEventListener('toggle-mute', handleToggleMute);
     return () => window.removeEventListener('toggle-mute', handleToggleMute);
@@ -87,40 +157,28 @@ const Hero = () => {
           justifyContent: 'flex-end',
         }}
       >
-        {/* Background video */}
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            zIndex: 0,
-          }}
-        >
-          <source src="/web%20video.mp4" type="video/mp4" />
-        </video>
+        {/* ── Ken Burns / quality-boosted video ─────────── */}
+        <div className="hero-video-wrap">
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="hero-video"
+          >
+            <source src="/web%20video.mp4" type="video/mp4" />
+          </video>
+        </div>
 
+        {/* ── Animated gradient overlays ─────────────── */}
+        <div className="hero-overlay hero-overlay-base" />
+        <div className="hero-overlay hero-overlay-sweep" />
+        <div className="hero-overlay hero-overlay-left" />
+        <div className="hero-overlay hero-shimmer" />
 
-
-        {/* Gradient overlays */}
-        <div
-          style={{
-            position: 'absolute', inset: 0, zIndex: 1,
-            background: 'linear-gradient(to top, rgba(5,20,10,0.85) 0%, rgba(5,20,10,0.35) 50%, rgba(5,20,10,0.08) 100%)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute', inset: 0, zIndex: 1,
-            background: 'linear-gradient(to right, rgba(5,20,10,0.5) 0%, transparent 55%)',
-          }}
-        />
+        {/* ── Floating particles ─────────────────────── */}
+        {particles.map((p, i) => <Particle key={i} style={p} />)}
 
         {/* ── Bottom content bar ── */}
         <div
@@ -132,32 +190,36 @@ const Hero = () => {
             {/* Left — headline */}
             <motion.div
               className="hero-headline"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
             >
-              <h1>
+              <motion.h1 variants={itemVariants}>
                 Connecting{' '}
-                <span style={{ color: 'var(--primary)' }}>Rural India's</span>
+                <span className="hero-highlight">Rural India's</span>
                 <br />
-                Workforce &amp; Farms
-              </h1>
+                <Typewriter />
+                <br />
+                &amp; Farms
+              </motion.h1>
+
+              <motion.div variants={itemVariants} className="hero-glow-line" />
             </motion.div>
 
             {/* Right — description + CTAs */}
             <motion.div
               className="hero-right"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
             >
-              <p className="hero-desc">
+              <motion.p variants={itemVariants} className="hero-desc">
                 Dinasari connects farmers, agricultural workers, and machinery
                 in one seamless, high-trust digital ecosystem for rural India.
                 No complexity. No middlemen. Just growth.
-              </p>
+              </motion.p>
 
-              <div className="hero-cta-row">
+              <motion.div variants={itemVariants} className="hero-cta-row">
                 <button
                   className="hero-btn-primary"
                   onClick={() => {
@@ -179,10 +241,25 @@ const Hero = () => {
                   Learn More
                   <ChevronRight size={15} strokeWidth={2.5} />
                 </button>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="hero-scroll-indicator"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.6, duration: 0.6 }}
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+          >
+            <ChevronDown size={22} color="rgba(255,255,255,0.55)" />
+          </motion.div>
+        </motion.div>
 
         {/* Video play/pause */}
         <button
@@ -231,6 +308,152 @@ const Hero = () => {
       <style dangerouslySetInnerHTML={{ __html: `
         .app { padding-top: 0 !important; }
 
+        /* ── Video quality boost ─────────────────────── */
+        .hero-video-wrap {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          animation: kenBurns 28s ease-in-out infinite alternate;
+          transform-origin: center center;
+          will-change: transform;
+        }
+        @keyframes kenBurns {
+          0%   { transform: scale(1.0) translate(0%, 0%); }
+          25%  { transform: scale(1.06) translate(-1%, 0.5%); }
+          50%  { transform: scale(1.08) translate(1%, -0.5%); }
+          75%  { transform: scale(1.05) translate(-0.5%, 1%); }
+          100% { transform: scale(1.04) translate(0.5%, -1%); }
+        }
+        .hero-video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: contrast(1.22) saturate(1.40) brightness(1.08) drop-shadow(0 0 0px transparent);
+          image-rendering: high-quality;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+          transform: translateZ(0);
+        }
+
+        /* ── Animated gradient overlays ─────────────── */
+        .hero-overlay {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+        .hero-overlay-base {
+          z-index: 1;
+          background: linear-gradient(
+            to top,
+            rgba(5,20,10,0.92) 0%,
+            rgba(5,20,10,0.45) 45%,
+            rgba(5,20,10,0.10) 100%
+          );
+        }
+        .hero-overlay-sweep {
+          z-index: 1;
+          background: linear-gradient(
+            125deg,
+            rgba(31,138,61,0.18) 0%,
+            transparent 40%,
+            rgba(5,20,10,0.25) 70%,
+            rgba(31,138,61,0.12) 100%
+          );
+          animation: sweepGradient 10s ease-in-out infinite alternate;
+        }
+        @keyframes sweepGradient {
+          0%   { opacity: 0.7; }
+          50%  { opacity: 1; }
+          100% { opacity: 0.7; }
+        }
+        .hero-overlay-left {
+          z-index: 1;
+          background: linear-gradient(to right, rgba(5,20,10,0.65) 0%, transparent 60%);
+        }
+        .hero-shimmer {
+          z-index: 1;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+          background-size: 200px 200px;
+          opacity: 0.3;
+          animation: shimmerDrift 8s linear infinite;
+        }
+        @keyframes shimmerDrift {
+          from { background-position: 0 0; }
+          to   { background-position: 200px 200px; }
+        }
+
+        /* ── Floating particles ──────────────────────── */
+        .hero-particle {
+          position: absolute;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(244,180,0,0.7) 0%, rgba(31,138,61,0.5) 100%);
+          z-index: 2;
+          pointer-events: none;
+          will-change: transform, opacity;
+          filter: blur(1px);
+        }
+
+        /* ── Animated hero highlight ─────────────────────── */
+        .hero-highlight {
+          color: var(--primary);
+          position: relative;
+          display: inline-block;
+        }
+        .hero-highlight::after {
+          content: '';
+          position: absolute;
+          left: 0; right: 0; bottom: -4px;
+          height: 3px;
+          border-radius: 2px;
+          background: linear-gradient(90deg, var(--primary), transparent);
+          animation: lineGrow 3s ease-in-out infinite alternate;
+          transform-origin: left center;
+        }
+        @keyframes lineGrow {
+          from { transform: scaleX(0.5); opacity: 0.5; }
+          to   { transform: scaleX(1);   opacity: 1; }
+        }
+
+        /* ── Typewriter ──────────────────────────────────── */
+        .typewriter-word {
+          color: #F4B400;
+          min-width: 160px;
+          display: inline-block;
+        }
+        .typewriter-cursor {
+          display: inline-block;
+          margin-left: 2px;
+          animation: blink 0.75s step-end infinite;
+          color: #F4B400;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* ── Glow line ───────────────────────────────────── */
+        .hero-glow-line {
+          width: 80px;
+          height: 3px;
+          border-radius: 3px;
+          background: linear-gradient(90deg, #F4B400, var(--primary));
+          margin-top: 24px;
+          animation: glowPulse 2.5s ease-in-out infinite alternate;
+        }
+        @keyframes glowPulse {
+          from { box-shadow: 0 0 8px rgba(244,180,0,0.4); opacity: 0.8; }
+          to   { box-shadow: 0 0 22px rgba(244,180,0,0.9); opacity: 1; }
+        }
+
+        /* ── Scroll indicator ────────────────────────────── */
+        .hero-scroll-indicator {
+          position: absolute;
+          bottom: 28px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 3;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
         /* ── Hero grid ── */
         .hero-grid {
           display: grid;
@@ -245,6 +468,7 @@ const Hero = () => {
           line-height: 1.05;
           letter-spacing: -2px;
           margin: 0;
+          text-shadow: 0 2px 24px rgba(0,0,0,0.5);
         }
         .hero-right {
           display: flex;
