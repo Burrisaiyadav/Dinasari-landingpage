@@ -24,6 +24,7 @@ const Header = () => {
     { name: 'About Us', href: '/about' },
     { name: 'Careers', href: '/careers' },
     { name: 'Investors', href: '/investors' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   const handleNavClick = (e, href) => {

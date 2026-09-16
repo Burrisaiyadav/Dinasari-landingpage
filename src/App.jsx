@@ -9,7 +9,8 @@ import CareersPage from './pages/CareersPage'
 import InvestorPage from './pages/InvestorPage'
 import ImpactPage from './pages/ImpactPage'
 import HelpPage from './pages/HelpPage'
-import { TermsPage, PrivacyPage, SafetyPage, CookiePage, UserAgreementPage } from './pages/LegalPages'
+import { TermsPage, PrivacyPage, RefundPolicyPage, SafetyPage, CookiePage, UserAgreementPage } from './pages/LegalPages'
+import ContactPage from './pages/ContactPage'
 
 function App() {
   return (
@@ -25,8 +26,14 @@ function App() {
             <Route path="/investors" element={<InvestorPage />} />
             <Route path="/impact" element={<ImpactPage />} />
             <Route path="/help" element={<HelpPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/contact-us" element={<ContactPage />} />
             <Route path="/terms" element={<TermsPage />} />
+            <Route path="/terms-and-conditions" element={<TermsPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPage />} />
+            <Route path="/refund-policy" element={<RefundPolicyPage />} />
+            <Route path="/cancellation-and-refund" element={<RefundPolicyPage />} />
             <Route path="/safety" element={<SafetyPage />} />
             <Route path="/cookies" element={<CookiePage />} />
             <Route path="/agreement" element={<UserAgreementPage />} />

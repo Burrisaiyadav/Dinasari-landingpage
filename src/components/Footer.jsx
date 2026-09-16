@@ -48,17 +48,21 @@ const Footer = () => {
         <div className="footer-link-col">
           <h4 className="footer-col-heading">Company</h4>
           <ul className="footer-link-list">
-            <li><Link to="/about"     className="footer-link">About Us</Link></li>
-            <li><Link to="/careers"   className="footer-link">Careers</Link></li>
-            <li><Link to="/investors" className="footer-link">Investors</Link></li>
-            <li><Link to="/impact"    className="footer-link">Impact Report</Link></li>
-            <li><Link to="/help"      className="footer-link">Help Center</Link></li>
+            <li><Link to="/about"          className="footer-link">About Us</Link></li>
+            <li><Link to="/contact"        className="footer-link">Contact & Office</Link></li>
+            <li><Link to="/careers"        className="footer-link">Careers</Link></li>
+            <li><Link to="/investors"      className="footer-link">Investors</Link></li>
+            <li><Link to="/impact"         className="footer-link">Impact Report</Link></li>
+            <li><Link to="/help"           className="footer-link">Help Center</Link></li>
           </ul>
         </div>
 
         {/* Col 4 — Contact info, 2-sub-column layout */}
         <div className="footer-info-col">
-          <h4 className="footer-col-heading">Contact Us</h4>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
+            <h4 className="footer-col-heading" style={{ margin: 0 }}>Contact Us</h4>
+            <Link to="/contact" style={{ fontSize: '12px', color: 'rgba(255,255,255,0.85)', textDecoration: 'underline' }}>View Office →</Link>
+          </div>
 
           <div className="footer-info-two-col">
 
@@ -77,6 +81,7 @@ const Footer = () => {
                 <div>
                   <span className="info-label">Email</span>
                   <a href="mailto:hello@dinasari.com" className="info-value">hello@dinasari.com</a>
+                  <a href="mailto:support@dinasari.in" className="info-value">support@dinasari.in</a>
                 </div>
               </div>
             </div>
@@ -87,16 +92,15 @@ const Footer = () => {
                 <MapPin size={14} className="info-icon" />
                 <div>
                   <span className="info-label">Address</span>
-                  <span className="info-value">Tarlupadu, Markapur,</span>
-                  <span className="info-value">AP — 523332</span>
+                  <span className="info-value">Tarlupadu Village,</span>
+                  <span className="info-value">Markapur, AP — 523332</span>
                 </div>
               </div>
               <div className="info-item">
                 <Clock size={14} className="info-icon" />
                 <div>
                   <span className="info-label">Office Hours</span>
-                  <span className="info-value">Mon–Sat</span>
-                  <span className="info-value">09 am – 06 pm</span>
+                  <span className="info-value">Mon–Fri (09:00 - 18:00)</span>
                 </div>
               </div>
             </div>
@@ -113,12 +117,14 @@ const Footer = () => {
       {/* ── Bottom Bar ── */}
       <div className="container footer-bottom-bar">
         <p className="footer-copy">
-          © 2026 · <strong>Dinasari Agritech Pvt Ltd</strong> · All Rights Reserved.
+          © 2026 · <strong>Dinasari</strong> · Registered at Tarlupadu, AP · All Rights Reserved.
         </p>
         <div className="footer-legal-links">
-          <Link to="/privacy" className="footer-link-sm">Privacy Policy</Link>
-          <Link to="/terms"   className="footer-link-sm">Terms of Service</Link>
-          <Link to="/cookies" className="footer-link-sm">Cookie Policy</Link>
+          <Link to="/terms"         className="footer-link-sm">Terms & Conditions</Link>
+          <Link to="/privacy"       className="footer-link-sm">Privacy Policy</Link>
+          <Link to="/refund-policy" className="footer-link-sm">Refund & Cancellation</Link>
+          <Link to="/contact"       className="footer-link-sm">Contact Us</Link>
+          <Link to="/cookies"       className="footer-link-sm">Cookies</Link>
         </div>
         <button onClick={scrollToTop} className="scroll-top-btn" aria-label="Scroll to top">
           <ArrowUp size={17} />
