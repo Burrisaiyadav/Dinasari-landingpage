@@ -24,3 +24,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Android APK binaries (files > 100MB blocked by GitHub)
+*.apk

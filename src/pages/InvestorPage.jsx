@@ -48,7 +48,7 @@ const InvestorPage = () => {
       
       setFormData(entry);
       setIsSubmitted(true);
-    } catch (error) {
+    } catch (_error) {
       alert("Submission failed. Please check if the backend server is running.");
     }
   };

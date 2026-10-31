@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import Logo from './Logo';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
@@ -52,19 +52,6 @@ const Header = () => {
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - 20;
     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-  };
-
-  const handleDownloadClick = () => {
-    if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => {
-        const el = document.getElementById('download');
-        if (el) scrollToElement(el);
-      }, 100);
-    } else {
-      const el = document.getElementById('download');
-      if (el) scrollToElement(el);
-    }
   };
 
   // Determine if we are on the home page (hero video page)
@@ -165,21 +152,26 @@ const Header = () => {
             </button>
           )}
 
-          {/* CTA Button */}
-          <button
+          {/* CTA Button - Direct APK Download */}
+          <a
+            href="/dinasari.apk"
+            download="dinasari.apk"
             className="header-cta-btn"
-            onClick={handleDownloadClick}
             style={{
               background: isScrolled || !isHomePage ? 'transparent' : 'transparent',
               color: isScrolled || !isHomePage ? '#1A1C19' : 'white',
               border: `1.5px solid ${isScrolled || !isHomePage ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.5)'}`,
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
             }}
           >
             Get the App
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
-          </button>
+          </a>
 
           {/* Mobile Toggle */}
           <button
@@ -214,13 +206,15 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
-              <button
+              <a
+                href="/dinasari.apk"
+                download="dinasari.apk"
                 className="btn btn-primary"
-                style={{ width: '100%', justifyContent: 'center', marginTop: '8px' }}
-                onClick={() => { setMobileMenuOpen(false); handleDownloadClick(); }}
+                style={{ width: '100%', justifyContent: 'center', marginTop: '8px', textDecoration: 'none' }}
+                onClick={() => setMobileMenuOpen(false)}
               >
-                Get the App →
-              </button>
+                Get the App
+              </a>
             </motion.div>
           )}
         </AnimatePresence>

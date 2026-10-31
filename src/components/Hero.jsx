@@ -79,8 +79,10 @@ const Typewriter = () => {
     } else if (deleting && displayed.length > 0) {
       timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 45);
     } else if (deleting && displayed.length === 0) {
-      setDeleting(false);
-      setIndex((i) => (i + 1) % tags.length);
+      timeout = setTimeout(() => {
+        setDeleting(false);
+        setIndex((i) => (i + 1) % tags.length);
+      }, 300);
     }
     return () => clearTimeout(timeout);
   }, [displayed, deleting, index]);
@@ -220,16 +222,15 @@ const Hero = () => {
               </motion.p>
 
               <motion.div variants={itemVariants} className="hero-cta-row">
-                <button
+                <a
+                  href="/dinasari.apk"
+                  download="dinasari.apk"
                   className="hero-btn-primary"
-                  onClick={() => {
-                    const el = document.getElementById('download');
-                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                  }}
+                  style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
                 >
-                  Explore the App
+                  Get the App
                   <ChevronRight size={15} strokeWidth={2.5} />
-                </button>
+                </a>
 
                 <button
                   className="hero-btn-secondary"

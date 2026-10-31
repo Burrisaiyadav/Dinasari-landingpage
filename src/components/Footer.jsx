@@ -30,6 +30,40 @@ const Footer = () => {
               </a>
             ))}
           </div>
+
+          {/* App download quick buttons */}
+          <div className="footer-app-box">
+            <span className="footer-app-title">Get the Dinasari App:</span>
+            <div className="footer-app-chips">
+              <a
+                href="https://play.google.com/store"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-store-btn footer-playstore"
+                aria-label="Google Play"
+              >
+                <svg viewBox="0 0 512 512" width="14" height="14" style={{ flexShrink: 0 }}>
+                  <path d="M32.5 7.3c-4.5 4.5-7 11.4-7 20.3v456.8c0 8.9 2.5 15.8 7 20.3l1.1 1.1L259.1 281.3v-10.6L33.6 6.2l-1.1 1.1z" fill="#ea4335"/>
+                  <path d="M366.4 389.2l-107.3-107.9v-10.6L366.4 162.8l1.1.6 126.9 72.1c36.2 20.5 36.2 54.1 0 74.7L367.5 388.6l-1.1.6z" fill="#fbbc04"/>
+                  <path d="M367.5 388.6L259.1 280.2 34.7 504.6c11.3 11.3 29.5 11.3 40.8 0l292-116z" fill="#34a853"/>
+                  <path d="M367.5 123.4L75.5 8.1C64.2-3.2 46-3.2 34.7 8.1l224.4 224.4 108.4-109.1z" fill="#4285f4"/>
+                </svg>
+                <span>Google Play</span>
+              </a>
+
+              <a
+                href="/dinasari.apk"
+                download="dinasari.apk"
+                className="footer-store-btn footer-apk"
+                aria-label="Download APK"
+              >
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style={{ flexShrink: 0 }}>
+                  <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v6c0 .83.67 1.5 1.5 1.5S5 16.33 5 15.5v-6C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-6c0-.83-.67-1.5-1.5-1.5zm-4.97-4.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.68 2.23 12.63 2 11.5 2c-1.13 0-2.18.23-3.14.63L6.88 1.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C5.64 4.3 4.41 6.01 4.23 8h14.54c-.18-1.99-1.41-3.7-3.24-4.84zM9 6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm5 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" />
+                </svg>
+                <span>Download APK</span>
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Col 2 — Services */}
@@ -49,6 +83,7 @@ const Footer = () => {
           <h4 className="footer-col-heading">Company</h4>
           <ul className="footer-link-list">
             <li><Link to="/about"          className="footer-link">About Us</Link></li>
+            <li><Link to="/download"       className="footer-link" style={{ color: '#fff', fontWeight: '700' }}>Download App (APK &amp; Store)</Link></li>
             <li><Link to="/contact"        className="footer-link">Contact & Office</Link></li>
             <li><Link to="/careers"        className="footer-link">Careers</Link></li>
             <li><Link to="/investors"      className="footer-link">Investors</Link></li>
